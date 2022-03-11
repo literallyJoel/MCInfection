@@ -1,9 +1,12 @@
 package com.csixtyone.minecraft_infection;
 
+import com.csixtyone.minecraft_infection.block.ModBlocks;
+import com.csixtyone.minecraft_infection.item.ModItems;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -28,7 +31,15 @@ public class MinecraftInfection {
 
     public MinecraftInfection() {
         // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        //Registers the custom blocks and items as implemented in the ModBlocks and ModItems classes.
+        ModItems.register(eventBus);
+        ModBlocks.register(eventBus);
+
+        eventBus.addListener(this::setup);
+
+
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
