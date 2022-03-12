@@ -13,6 +13,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> INFECTED_INGOT = ITEMS.register("infected_ingot", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
+    public static final RegistryObject<Item> RAW_INFECTED_GOLD = ITEMS.register("raw_infected_gold", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }
