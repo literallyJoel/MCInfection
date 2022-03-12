@@ -38,7 +38,7 @@ public class ModBlocks {
 
     //Infected Gold Ore
     public static final RegistryObject<Block> INFECTED_GOLD_ORE = registerBlock("infected_gold_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops()),
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     public static void register(IEventBus eventBus){
