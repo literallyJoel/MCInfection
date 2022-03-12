@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft_infection:infected_gold_ore"
+    "minecraft_infection:infected_gold_ore",
+    "minecraft_infection:infected_diamond_ore"
   ]
 }
