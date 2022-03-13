@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": {"model":  "minecraft_infection:block/infected_redstone_ore"}
+  }
+}
