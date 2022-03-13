@@ -17,11 +17,14 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.ArrayList;
 import java.util.function.Supplier;
 
 
 
 public class ModBlocks {
+    private static ArrayList<String> infectableBlocks = new ArrayList<>();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MinecraftInfection.MOD_ID);
 
     //Method used to register the item variant of a block. The item variant is used pretty much any time the block isn't placed
@@ -34,9 +37,18 @@ public class ModBlocks {
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> output = BLOCKS.register(name, block);
         registerBlockItem(name, output, tab);
+        //creates a list of the vanilla form of all the implemented infected blocks
+        //for use in the infection spread code later
+        String originalName = name.replace("infected_", "");
+        if(!originalName.equals("ore")){
+            infectableBlocks.add(originalName);
+        }
         return output;
     }
 
+    public static ArrayList<String> getInfectableBlocks() {
+        return infectableBlocks;
+    }
 
     //Custom block definitions
 
