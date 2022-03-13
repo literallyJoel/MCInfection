@@ -65,9 +65,21 @@ public class ModBlocks {
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Redstone Ore
+    // TODO: Switch out RedStoneOreBlock with custom infection type block when implemented later for correct particles and infection spreading
     public static final RegistryObject<Block> INFECTED_REDSTONE_ORE = registerBlock("infected_redstone_ore",
             () -> new RedStoneOreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().randomTicks().lightLevel((state) -> 3).strength(3.0F, 3.0F)),
             ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Coal Ore
+    public static final RegistryObject<Block> INFECTED_COAL_ORE = registerBlock("infected_coal_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.COAL_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Emerald Ore
+    public static final RegistryObject<Block> INFECTED_EMERALD_ORE = registerBlock("infected_emerald_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
 
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);

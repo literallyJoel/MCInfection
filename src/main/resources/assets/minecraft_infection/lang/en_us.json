@@ -6,5 +6,7 @@
   "block.minecraft_infection.infected_iron_ore": "Infected Iron Ore",
   "block.minecraft_infection.infected_copper_ore": "Infected Copper Ore",
   "block.minecraft_infection.infected_lapis_ore": "Infected Lapis Ore",
-  "block.minecraft_infection.infected_redstone_ore": "Infected Redstone Ore"
+  "block.minecraft_infection.infected_redstone_ore": "Infected Redstone Ore",
+  "block.minecraft_infection.infected_coal_ore": "Infected Coal Ore",
+  "block.minecraft_infection.infected_emerald_ore": "Infected Emerald Ore"
 }

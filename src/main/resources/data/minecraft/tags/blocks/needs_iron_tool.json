@@ -3,6 +3,7 @@
   "values": [
     "minecraft_infection:infected_gold_ore",
     "minecraft_infection:infected_diamond_ore",
-    "minecraft_infection:infected_redstone_ore"
+    "minecraft_infection:infected_redstone_ore",
+    "minecraft_infection:infected_emerald_ore"
   ]
 }
