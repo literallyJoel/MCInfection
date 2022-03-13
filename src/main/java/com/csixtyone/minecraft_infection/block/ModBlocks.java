@@ -80,6 +80,11 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
+    //Infected Ore
+    public static final RegistryObject<Block> INFECTED_ORE = registerBlock("infected_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(15f)),
+            ModCreativeModeTab.INFECTION_TAB);
+
 
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);

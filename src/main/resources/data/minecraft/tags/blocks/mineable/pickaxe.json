@@ -8,6 +8,7 @@
     "minecraft_infection:infected_lapis_ore",
     "minecraft_infection:infected_redstone_ore",
     "minecraft_infection:infected_coal_ore",
-    "minecraft_infection:infected_emerald_ore"
+    "minecraft_infection:infected_emerald_ore",
+    "minecraft_infection:infected_ore"
   ]
 }
