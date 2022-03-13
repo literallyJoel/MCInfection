@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft_infection:infected_iron_ore",
+    "minecraft_infection:infected_copper_ore",
+    "minecraft_infection:infected_lapis_ore",
+    "minecraft_infection:infected_ore"
+  ]
+}
