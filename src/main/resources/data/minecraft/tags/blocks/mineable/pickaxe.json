@@ -4,6 +4,7 @@
     "minecraft_infection:infected_gold_ore",
     "minecraft_infection:infected_diamond_ore",
     "minecraft_infection:infected_iron_ore",
-    "minecraft_infection:infected_copper_ore"
+    "minecraft_infection:infected_copper_ore",
+    "minecraft_infection:infected_lapis_ore"
   ]
 }

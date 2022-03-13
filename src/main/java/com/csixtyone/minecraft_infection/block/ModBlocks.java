@@ -56,6 +56,11 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.COPPER_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
+    //Infected Lapis Ore
+    public static final RegistryObject<Block> INFECTED_LAPIS_ORE = registerBlock("infected_lapis_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.LAPIS_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }
