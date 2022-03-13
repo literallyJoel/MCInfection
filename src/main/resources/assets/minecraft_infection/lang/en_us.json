@@ -1,6 +1,7 @@
 {
   "item.minecraft_infection.infected_ingot": "Corrupt ingot",
   "item.minecraft_infection.raw_infected_gold": "Raw Infected Gold",
+  "item.minecraft_infection.raw_infected_iron": "Raw Infected Iron",
   "itemGroup.infection_tab": "Minecraft: Infection",
   "block.minecraft_infection.infected_gold_ore": "Infected Gold Ore",
   "block.minecraft_infection.infected_diamond_ore": "Infected Diamond Ore",
