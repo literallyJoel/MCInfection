@@ -46,6 +46,16 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
+    //Infected Iron Ore
+    public static final RegistryObject<Block> INFECTED_IRON_ORE = registerBlock("infected_iron_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Copper Ore
+    public static final RegistryObject<Block> INFECTED_COPPER_ORE = registerBlock("infected_copper_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.COPPER_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }
