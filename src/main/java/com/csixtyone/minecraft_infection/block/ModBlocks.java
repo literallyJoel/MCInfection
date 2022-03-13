@@ -1,6 +1,7 @@
 package com.csixtyone.minecraft_infection.block;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
+import com.csixtyone.minecraft_infection.block.custom.InfectedBlock;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -41,48 +42,47 @@ public class ModBlocks {
 
     //Infected Gold Ore
     public static final RegistryObject<Block> INFECTED_GOLD_ORE = registerBlock("infected_gold_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Diamond Ore
     public static final RegistryObject<Block> INFECTED_DIAMOND_ORE = registerBlock("infected_diamond_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Iron Ore
     public static final RegistryObject<Block> INFECTED_IRON_ORE = registerBlock("infected_iron_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.IRON_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Copper Ore
     public static final RegistryObject<Block> INFECTED_COPPER_ORE = registerBlock("infected_copper_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.COPPER_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Lapis Ore
     public static final RegistryObject<Block> INFECTED_LAPIS_ORE = registerBlock("infected_lapis_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.LAPIS_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.LAPIS_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Redstone Ore
-    // TODO: Switch out RedStoneOreBlock with custom infection type block when implemented later for correct particles and infection spreading
     public static final RegistryObject<Block> INFECTED_REDSTONE_ORE = registerBlock("infected_redstone_ore",
             () -> new RedStoneOreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().randomTicks().lightLevel((state) -> 3).strength(3.0F, 3.0F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Coal Ore
     public static final RegistryObject<Block> INFECTED_COAL_ORE = registerBlock("infected_coal_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.COAL_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.COAL_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Emerald Ore
     public static final RegistryObject<Block> INFECTED_EMERALD_ORE = registerBlock("infected_emerald_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Ore
     public static final RegistryObject<Block> INFECTED_ORE = registerBlock("infected_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(15f)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(15f)),
             ModCreativeModeTab.INFECTION_TAB);
 
 
