@@ -4,6 +4,7 @@ import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.custom.InfectedBlock;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -19,12 +20,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 
 
 public class ModBlocks {
-
+    private static Map<Block, Block> blockPairs = new HashMap<>();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MinecraftInfection.MOD_ID);
 
     //Method used to register the item variant of a block. The item variant is used pretty much any time the block isn't placed
@@ -38,10 +42,21 @@ public class ModBlocks {
         RegistryObject<T> output = BLOCKS.register(name, block);
         registerBlockItem(name, output, tab);
 
+        /*Creates a dictionary of the infected ores and their original counterparts for use in the infection spread
+        code later*/
+        String originalOre = name.replace("infected_", "");
+        if(!originalOre.equals("ore")){
+            blockPairs.put(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("minecraft", name.replace("infected_", ""))), block.get());
+        }
+
+
+
         return output;
     }
 
-
+    public static Map<Block, Block> getBlockPairs() {
+        return blockPairs;
+    }
 
     //Custom block definitions
 
