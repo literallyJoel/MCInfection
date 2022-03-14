@@ -43,22 +43,14 @@ public class InfectedBlock extends Block {
                 //Loops through the blocks and has a chance of changing them to their infected form if compatible
                 for (Map.Entry<BlockPos, BlockState> blockState : blockStates.entrySet()) {
                     Block block = blockState.getValue().getBlock();
-                    if (ModBlocks.getInfectableBlocks().contains(block.getName().getString())) {
-                        if (infectionChance < rand.nextFloat()) {
-                            int direction = rand.nextInt(3);
 
-                            switch (direction) {
-                                case 0:
-
-                            }
-                        }
-                    }
                 }
             }
             super.animateTick(stateIn, level, pos, rand);
         }
     }
 
+    //dictionary of keys on block setup?
     private Block checkInfectedForm(Block block) {
         return block;
     }
