@@ -1,7 +1,12 @@
 {
-  "item.minecraft_infection.infected_ingot": "Corrupt ingot",
+  "item.minecraft_infection.infected_ingot": "Infected ingot",
+  "item.minecraft_infection.infected_gold_ingot": "Infected Gold ingot",
+  "item.minecraft_infection.infected_iron_ingot": "Infected Iron ingot",
+  "item.minecraft_infection.infected_copper_ingot": "Infected Copper ingot",
+  "item.minecraft_infection.infected_diamond": "Infected Diamond",
   "item.minecraft_infection.raw_infected_gold": "Raw Infected Gold",
   "item.minecraft_infection.raw_infected_iron": "Raw Infected Iron",
+  "item.minecraft_infection.raw_infected_copper": "Raw Infected Copper",
   "itemGroup.infection_tab": "Minecraft: Infection",
   "block.minecraft_infection.infected_gold_ore": "Infected Gold Ore",
   "block.minecraft_infection.infected_diamond_ore": "Infected Diamond Ore",
