@@ -4,6 +4,7 @@ import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.custom.InfectedBlock;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -17,11 +18,17 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 
 
 public class ModBlocks {
+    private static Map<String, String> blockPairs = new HashMap<>();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MinecraftInfection.MOD_ID);
 
     //Method used to register the item variant of a block. The item variant is used pretty much any time the block isn't placed
@@ -34,9 +41,23 @@ public class ModBlocks {
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> output = BLOCKS.register(name, block);
         registerBlockItem(name, output, tab);
+
+        /*Creates a dictionary of the infected ores and their original counterparts for use in the infection spread
+        code later*/
+        String originalOre = "block.minecraft." + name.replace("infected_", "");
+        if(!originalOre.equals("block.minecraft.ore")){
+            System.out.println("Adding dictionary pair: " + originalOre + ", " + name);
+            blockPairs.put(originalOre, name);
+        }
+
+
+
         return output;
     }
 
+    public static Map<String, String>getBlockPairs() {
+        return blockPairs;
+    }
 
     //Custom block definitions
 
@@ -67,7 +88,7 @@ public class ModBlocks {
 
     //Infected Redstone Ore
     public static final RegistryObject<Block> INFECTED_REDSTONE_ORE = registerBlock("infected_redstone_ore",
-            () -> new RedStoneOreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().randomTicks().lightLevel((state) -> 3).strength(3.0F, 3.0F)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().randomTicks().lightLevel((state) -> 3).strength(3.0F, 3.0F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Coal Ore
