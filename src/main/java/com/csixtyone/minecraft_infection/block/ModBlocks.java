@@ -28,7 +28,7 @@ import java.util.function.Supplier;
 
 
 public class ModBlocks {
-    private static Map<Block, Block> blockPairs = new HashMap<>();
+    private static Map<String, String> blockPairs = new HashMap<>();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MinecraftInfection.MOD_ID);
 
     //Method used to register the item variant of a block. The item variant is used pretty much any time the block isn't placed
@@ -44,9 +44,10 @@ public class ModBlocks {
 
         /*Creates a dictionary of the infected ores and their original counterparts for use in the infection spread
         code later*/
-        String originalOre = name.replace("infected_", "");
-        if(!originalOre.equals("ore")){
-            blockPairs.put(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("minecraft", name.replace("infected_", ""))), block.get());
+        String originalOre = "block.minecraft." + name.replace("infected_", "");
+        if(!originalOre.equals("block.minecraft.ore")){
+            System.out.println("Adding dictionary pair: " + originalOre + ", " + name);
+            blockPairs.put(originalOre, name);
         }
 
 
@@ -54,7 +55,7 @@ public class ModBlocks {
         return output;
     }
 
-    public static Map<Block, Block> getBlockPairs() {
+    public static Map<String, String>getBlockPairs() {
         return blockPairs;
     }
 
@@ -87,7 +88,7 @@ public class ModBlocks {
 
     //Infected Redstone Ore
     public static final RegistryObject<Block> INFECTED_REDSTONE_ORE = registerBlock("infected_redstone_ore",
-            () -> new RedStoneOreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().randomTicks().lightLevel((state) -> 3).strength(3.0F, 3.0F)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().randomTicks().lightLevel((state) -> 3).strength(3.0F, 3.0F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Coal Ore
