@@ -24,6 +24,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> INFECTED_EMERALD = ITEMS.register("infected_emerald", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
+    public static final RegistryObject<Item> INFECTED_REDSTONE = ITEMS.register("infected_redstone", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    public static final RegistryObject<Item> INFECTED_LAPIS_LAZULI = ITEMS.register("infected_lapis_lazuli", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
     public static final RegistryObject<Item> INFECTED_COAL = ITEMS.register("infected_coal", () -> new InfectedCoalItem(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
     public static final RegistryObject<Item> RAW_INFECTED_GOLD = ITEMS.register("raw_infected_gold", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
