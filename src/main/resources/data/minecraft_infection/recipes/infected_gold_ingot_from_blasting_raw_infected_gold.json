@@ -1,7 +1,7 @@
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "item": "minecraft:raw_infected_gold"
+    "item": "minecraft_infection:raw_infected_gold"
   },
   "result": "minecraft_infection:infected_gold_ingot",
   "experience": 1.0,
