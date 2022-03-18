@@ -1,6 +1,5 @@
 {
   "type": "minecraft:blasting",
-  "group": "copper_ingot",
   "ingredient": {
     "item": "minecraft_infection:infected_copper_ore"
   },
