@@ -19,5 +19,9 @@
   "block.minecraft_infection.infected_coal_ore": "Infected Coal Ore",
   "block.minecraft_infection.infected_emerald_ore": "Infected Emerald Ore",
   "block.minecraft_infection.infected_ore": "Infected Ore",
-  "block.minecraft_infection.infected_CobbleStone": "infected_cobblestone"
+  "block.minecraft_infection.infected_CobbleStone": "Infected CobbleStone",
+  "block.minecraft_infection.infected_CobbleStone": "Infected DeepSlate Gold Ore",
+  "block.minecraft_infection.infected_CobbleStone": "Infected DeepSlate Iron Ore",
+  "block.minecraft_infection.infected_CobbleStone": "Infected Deepslate RedStone Ore",
+  "block.minecraft_infection.infected_CobbleStone": "Infected DeepSlate Lapis Ore"
 }
