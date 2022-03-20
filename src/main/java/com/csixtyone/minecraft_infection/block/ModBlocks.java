@@ -106,6 +106,10 @@ public class ModBlocks {
             () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(15f)),
             ModCreativeModeTab.INFECTION_TAB);
 
+    //Infected CobbleStone
+    public static final RegistryObject<Block> INFECTED_COBBLESTONE = registerBlock("infected_cobblestone",
+            () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(9F)),
+            ModCreativeModeTab.INFECTION_TAB);
 
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
