@@ -1,6 +1,7 @@
 package com.csixtyone.minecraft_infection.item;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
+import com.csixtyone.minecraft_infection.item.custom.InfectedCoalItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -30,7 +31,9 @@ public class ModItems {
     public static final RegistryObject<Item> INFECTED_EMERALD = ITEMS.register("infected_emerald", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
     //Infected Coal
-    public static final RegistryObject<Item> INFECTED_COAL = ITEMS.register("infected_coal", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+    public static final RegistryObject<Item> INFECTED_COAL = ITEMS.register("infected_coal", () -> new InfectedCoalItem(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+
 
     //Raw Infected Gold
     public static final RegistryObject<Item> RAW_INFECTED_GOLD = ITEMS.register("raw_infected_gold", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));

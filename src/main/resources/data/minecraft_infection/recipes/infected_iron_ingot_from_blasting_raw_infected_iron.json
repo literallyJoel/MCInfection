@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "minecraft_infection:raw_infected_iron"
+  },
+  "result": "minecraft_infection:infected_iron_ingot",
+  "experience": 0.7,
+  "cookingtime": 100
+}

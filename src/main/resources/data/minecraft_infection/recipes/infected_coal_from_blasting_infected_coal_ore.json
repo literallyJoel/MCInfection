@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "minecraft_infection:infected_coal_ore"
+  },
+  "result": "minecraft_infection:infected_coal",
+  "experience": 0.1,
+  "cookingtime": 100
+}
