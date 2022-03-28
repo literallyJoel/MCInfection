@@ -112,22 +112,22 @@ public class ModBlocks {
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Deepslate Gold Ore
-    public static final RegistryObject<Block> DEEPSLATE_GOLD_ORE = registerBlock("infected_deepslate_gold_ore",
+    public static final RegistryObject<Block>   INFECTED_DEEPSLATE_GOLD_ORE = registerBlock("infected_deepslate_gold_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(7F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Deepslate Iron Ore
-    public static final RegistryObject<Block> DEEPSLATE_IRON_ORE = registerBlock("infected_deepslate_iron_ore",
+    public static final RegistryObject<Block> INFECTED_DEEPSLATE_IRON_ORE = registerBlock("infected_deepslate_iron_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(9F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Deepslate RedStone Ore
-    public static final RegistryObject<Block> DEEPSLATE_REDSTONE_ORE = registerBlock("infected_deepslate_redstone_ore",
+    public static final RegistryObject<Block> INFECTED_DEEPSLATE_REDSTONE_ORE = registerBlock("infected_deepslate_redstone_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(8F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Deepslate Lapis Ore
-    public static final RegistryObject<Block> DEEPSLATE_LAPIS_ORE = registerBlock("infected_deepslate_lapis_ore",
+    public static final RegistryObject<Block> INFECTED_DEEPSLATE_LAPIS_ORE = registerBlock("infected_deepslate_lapis_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(8F)),
             ModCreativeModeTab.INFECTION_TAB);
 
