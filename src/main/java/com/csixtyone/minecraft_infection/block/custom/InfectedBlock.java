@@ -3,13 +3,13 @@ package com.csixtyone.minecraft_infection.block.custom;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
+import com.csixtyone.minecraft_infection.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -50,9 +50,8 @@ public class InfectedBlock extends Block {
                 ArrayList<Integer> infectableDirections = new ArrayList<>();
 
                 for (int i = 0; i < blockStates.length; i++) {
-                        /*checks if the given block has an infected form. Always returns ACACIA_BUTTON if it doesn't
-                        so this is used as our fail case */
-                    if (checkInfectedForm(blockStates[i].getBlock()) != Blocks.ACACIA_BUTTON) {
+                    //checks if the given block has an infected form.
+                    if (isInfectable(blockStates[i])) {
                         //if it is infectable, it adds the current position in the loop to the infectable directions array
 
                           /*
@@ -78,14 +77,13 @@ public class InfectedBlock extends Block {
                         //checks the direction given, checks the block in that position and replaces it with its infected form
 
 
-
                         //at this point we've already checked if it can be infected, so we just assume it can be and update the block
-                        case 0 -> level.setBlockAndUpdate(pos.north(), checkInfectedForm(level.getBlockState(pos.north()).getBlock()).defaultBlockState());
-                        case 1 -> level.setBlockAndUpdate(pos.south(), checkInfectedForm(level.getBlockState(pos.south()).getBlock()).defaultBlockState());
-                        case 2 -> level.setBlockAndUpdate(pos.east(), checkInfectedForm(level.getBlockState(pos.east()).getBlock()).defaultBlockState());
-                        case 3 -> level.setBlockAndUpdate(pos.west(), checkInfectedForm(level.getBlockState(pos.west()).getBlock()).defaultBlockState());
-                        case 4 -> level.setBlockAndUpdate(pos.above(), checkInfectedForm(level.getBlockState(pos.above()).getBlock()).defaultBlockState());
-                        case 5 -> level.setBlockAndUpdate(pos.below(), checkInfectedForm(level.getBlockState(pos.below()).getBlock()).defaultBlockState());
+                        case 0 -> level.setBlockAndUpdate(pos.north(), getInfectedForm(level.getBlockState(pos.north()).getBlock()).defaultBlockState());
+                        case 1 -> level.setBlockAndUpdate(pos.south(), getInfectedForm(level.getBlockState(pos.south()).getBlock()).defaultBlockState());
+                        case 2 -> level.setBlockAndUpdate(pos.east(), getInfectedForm(level.getBlockState(pos.east()).getBlock()).defaultBlockState());
+                        case 3 -> level.setBlockAndUpdate(pos.west(), getInfectedForm(level.getBlockState(pos.west()).getBlock()).defaultBlockState());
+                        case 4 -> level.setBlockAndUpdate(pos.above(), getInfectedForm(level.getBlockState(pos.above()).getBlock()).defaultBlockState());
+                        case 5 -> level.setBlockAndUpdate(pos.below(), getInfectedForm(level.getBlockState(pos.below()).getBlock()).defaultBlockState());
 
                     }
                 }
@@ -109,19 +107,17 @@ public class InfectedBlock extends Block {
 
     //Checks the dictionary to see if the given block has an infected form. Returns the infected form if it exists.
     //If it doesn't exist it returns Acacia Button, which is then used as the fail case, meaning no infected form
-    private Block checkInfectedForm(Block block) {
+    private Block getInfectedForm(Block block) {
         //grabs the dictionary of blocks and their infected forms
         Map<String, String> blockPairs = ModBlocks.getBlockPairs();
         //Tries to grab the item for the given block ID
-        if (blockPairs.get(block.getDescriptionId()) != null) {
-            //if it doesn't return null, the item has an infected form which is returned
-            return ForgeRegistries.BLOCKS.getValue(new ResourceLocation(MinecraftInfection.MOD_ID, blockPairs.get(block.getDescriptionId())));
-        } else {
-            //if it does return null, the block doesn't have an infected form. It will return ACACIA_BUTTON as the known fail case
-            return Blocks.ACACIA_BUTTON;
-        }
+        return ForgeRegistries.BLOCKS.getValue(new ResourceLocation(MinecraftInfection.MOD_ID, blockPairs.get(block.getDescriptionId())));
+
+    }
 
 
+    private boolean isInfectable(BlockState block) {
+        return block.is(ModTags.Blocks.INFECTABLE_BLOCKS);
     }
 
 
