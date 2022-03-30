@@ -6,6 +6,8 @@
   "item.minecraft_infection.infected_diamond": "Infected Diamond",
   "item.minecraft_infection.infected_emerald": "Infected Emerald",
   "item.minecraft_infection.infected_coal": "Infected Coal",
+  "item.minecraft_infection.infected_redstone": "Infected Redstone",
+  "item.minecraft_infection.infected_lapis_lazuli": "Infected Lapis Lazuli",
   "item.minecraft_infection.raw_infected_gold": "Raw Infected Gold",
   "item.minecraft_infection.raw_infected_iron": "Raw Infected Iron",
   "item.minecraft_infection.raw_infected_copper": "Raw Infected Copper",

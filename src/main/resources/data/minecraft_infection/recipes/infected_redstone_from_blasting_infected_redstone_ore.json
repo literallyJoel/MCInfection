@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "minecraft_infection:infected_redstone_ore"
+  },
+  "result": "minecraft_infection:infected_redstone",
+  "experience": 0.7,
+  "cookingtime": 100
+}
