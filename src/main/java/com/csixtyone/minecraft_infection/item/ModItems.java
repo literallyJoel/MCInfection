@@ -15,6 +15,7 @@ public class ModItems {
     //Infected Ingot
     public static final RegistryObject<Item> INFECTED_INGOT = ITEMS.register("infected_ingot", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
+
     //Infected Iron Ingot
     public static final RegistryObject<Item> INFECTED_IRON_INGOT = ITEMS.register("infected_iron_ingot", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
