@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
+
     //Creates the register for storing the newly created items
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MinecraftInfection.MOD_ID);
 
@@ -32,8 +33,6 @@ public class ModItems {
 
     //Infected Coal
     public static final RegistryObject<Item> INFECTED_COAL = ITEMS.register("infected_coal", () -> new InfectedCoalItem(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
-
-
 
     //Raw Infected Gold
     public static final RegistryObject<Item> RAW_INFECTED_GOLD = ITEMS.register("raw_infected_gold", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
