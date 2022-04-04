@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft_infection:infected_deepslate_lapis_ore"
+  },
+  "result": "minecraft_infection:infected_lapis_lazuli",
+  "experience": 0.2,
+  "cookingtime": 200
+}

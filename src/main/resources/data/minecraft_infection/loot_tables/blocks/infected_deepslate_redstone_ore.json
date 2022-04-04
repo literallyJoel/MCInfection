@@ -25,7 +25,7 @@
                   }
                 }
               ],
-              "name": "minecraft_infection:infected_lapis_ore"
+              "name": "minecraft_infection:infected_deepslate_redstone_ore"
             },
             {
               "type": "minecraft:item",
@@ -35,20 +35,23 @@
                   "count": {
                     "type": "minecraft:uniform",
                     "min": 4.0,
-                    "max": 9.0
+                    "max": 5.0
                   },
                   "add": false
                 },
                 {
                   "function": "minecraft:apply_bonus",
                   "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops"
+                  "formula": "minecraft:uniform_bonus_count",
+                  "parameters": {
+                    "bonusMultiplier": 1
+                  }
                 },
                 {
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft_infection:infected_lapis_lazuli"
+              "name": "minecraft_infection:infected_redstone"
             }
           ]
         }
