@@ -25,20 +25,11 @@
                   }
                 }
               ],
-              "name": "minecraft_infection:infected_lapis_ore"
+              "name": "minecraft_infection:infected_deepslate_iron_ore"
             },
             {
               "type": "minecraft:item",
               "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "min": 4.0,
-                    "max": 9.0
-                  },
-                  "add": false
-                },
                 {
                   "function": "minecraft:apply_bonus",
                   "enchantment": "minecraft:fortune",
@@ -48,7 +39,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft_infection:infected_lapis_lazuli"
+              "name": "minecraft_infection:raw_infected_iron"
             }
           ]
         }

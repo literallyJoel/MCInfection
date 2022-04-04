@@ -39,7 +39,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:coal"
+              "name": "minecraft_infection:infected_coal"
             }
           ]
         }
