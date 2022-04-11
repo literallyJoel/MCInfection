@@ -9,6 +9,12 @@
     "minecraft_infection:infected_redstone_ore",
     "minecraft_infection:infected_coal_ore",
     "minecraft_infection:infected_emerald_ore",
-    "minecraft_infection:infected_ore"
+    "minecraft_infection:infected_ore",
+    "minecraft_infection:infected_deepslate_gold_ore",
+    "minecraft_infection:infected_cobblestone",
+    "minecraft_infection:infected_deepslate_iron_ore",
+    "minecraft_infection:infected_deepslate_redstone_ore",
+    "minecraft_infection:infected_deepslate_lapis_ore"
+
   ]
 }
