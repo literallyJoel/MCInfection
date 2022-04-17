@@ -112,7 +112,7 @@ public class ModBlocks {
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Deepslate Gold Ore
-    public static final RegistryObject<Block>   INFECTED_DEEPSLATE_GOLD_ORE = registerBlock("infected_deepslate_gold_ore",
+    public static final RegistryObject<Block> INFECTED_DEEPSLATE_GOLD_ORE = registerBlock("infected_deepslate_gold_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(7F)),
             ModCreativeModeTab.INFECTION_TAB);
 

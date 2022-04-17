@@ -12,7 +12,6 @@ public class InfectedCoalItem extends Item {
 
     @Override
     public int getBurnTime(ItemStack itemStack, RecipeType<?> recipeType) {
-            // TODO Auto-generated method stub
             return 3200;
         }
     }
