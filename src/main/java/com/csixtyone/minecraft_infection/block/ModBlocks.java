@@ -131,6 +131,11 @@ public class ModBlocks {
             () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(8F)),
             ModCreativeModeTab.INFECTION_TAB);
 
+    //PureDust ore
+    public static final RegistryObject<Block> PUREDUST_ORE = registerBlock("puredust_ore",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }

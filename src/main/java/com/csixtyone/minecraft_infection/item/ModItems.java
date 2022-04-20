@@ -49,6 +49,8 @@ public class ModItems {
     //Raw Infected Copper
     public static final RegistryObject<Item> RAW_INFECTED_COPPER = ITEMS.register("raw_infected_copper", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
+    //Puredust
+    public static final RegistryObject<Item> PUREDUST = ITEMS.register("puredust", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
