@@ -66,6 +66,7 @@ public class ModBlocks {
             () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
+
     //Infected Diamond Ore
     public static final RegistryObject<Block> INFECTED_DIAMOND_ORE = registerBlock("infected_diamond_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),

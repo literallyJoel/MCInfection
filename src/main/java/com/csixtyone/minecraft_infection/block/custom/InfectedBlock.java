@@ -1,6 +1,5 @@
 package com.csixtyone.minecraft_infection.block.custom;
-
-
+import com.csixtyone.minecraft_infection.InfectionLevelSystem.data.PlayerInfectionLevelProvider;
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.util.ModTags;
@@ -8,10 +7,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -22,12 +24,12 @@ public class InfectedBlock extends Block {
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState p_49921_) {
+    public boolean isRandomlyTicking(@NotNull BlockState p_49921_) {
         return true;
     }
 
     @Override
-    public void tick(BlockState blockState, ServerLevel level, BlockPos pos, Random rand) {
+    public void tick(@NotNull BlockState blockState, ServerLevel level, @NotNull BlockPos pos, @NotNull Random rand) {
 
         //todo: Implement infecting mobs once infected mobs are implemented
         //implements infection spread
@@ -36,7 +38,6 @@ public class InfectedBlock extends Block {
             //sets chance of infection spreading to 5%
             float infectionChance = 0.05f;
             if (infectionChance > rand.nextFloat()) {
-                System.out.println("first if");
                 //creates an array of the surrounding blocks
                 BlockState[] blockStates = new BlockState[6];
                 blockStates[0] = (level.getBlockState(pos.north()));
@@ -45,6 +46,7 @@ public class InfectedBlock extends Block {
                 blockStates[3] = (level.getBlockState(pos.west()));
                 blockStates[4] = (level.getBlockState(pos.above()));
                 blockStates[5] = (level.getBlockState(pos.below()));
+
 
                 //creates an array list of the directions in which the infection can spread
                 ArrayList<Integer> infectableDirections = new ArrayList<>();
@@ -95,7 +97,7 @@ public class InfectedBlock extends Block {
     }
 
     @Override
-    public void animateTick(BlockState stateIn, Level level, BlockPos pos, Random rand) {
+    public void animateTick(@NotNull BlockState stateIn, @NotNull Level level, @NotNull BlockPos pos, Random rand) {
         //implements purple particles for all infected blocks to show
         float particleChance = 0.45f;
         //todo: implement custom particles (can't find clear resources on how to do so)
@@ -120,5 +122,19 @@ public class InfectedBlock extends Block {
         return block.is(ModTags.Blocks.INFECTABLE_BLOCKS);
     }
 
+    @Override
+    public void stepOn(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @NotNull Entity pEntity) {
 
+
+
+        if(pEntity instanceof Player){
+            pEntity.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(playerInfection -> {
+                Random random = new Random();
+                float infectionChance = 0.05f;
+                if(infectionChance> random.nextFloat()){
+                    playerInfection.increaseInfectionLevel(1);
+                }
+            });
+        }
+    }
 }
