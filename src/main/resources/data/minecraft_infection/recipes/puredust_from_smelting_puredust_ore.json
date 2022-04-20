@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft_infection:puredust_ore"
+  },
+  "result": "minecraft_infection:puredust",
+  "experience": 0.7,
+  "cookingtime": 200
+}
