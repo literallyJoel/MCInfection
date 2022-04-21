@@ -1,5 +1,5 @@
 package com.csixtyone.minecraft_infection.block.custom;
-import com.csixtyone.minecraft_infection.InfectionLevelSystem.data.PlayerInfectionLevelProvider;
+import com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.data.PlayerInfectionLevelProvider;
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.util.ModTags;
@@ -124,16 +124,21 @@ public class InfectedBlock extends Block {
 
     @Override
     public void stepOn(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @NotNull Entity pEntity) {
-
-
-
+        //First we check if it's a player standing on the block
         if(pEntity instanceof Player){
+            //If it is, we check to see if they have an infection level attatched to them
             pEntity.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(playerInfection -> {
+                //If they do we can increase the infection level
+                //We first create a random float to and use it to set the chance of the infection level increasing to 0.1%
                 Random random = new Random();
-                float infectionChance = 0.05f;
-                if(infectionChance> random.nextFloat()){
+                float infectionChance = 0.01f;
+                /*This is done as this function is called constantly whilst the player is standing on an infected block,
+                  so it's done to limit the speed in which their infection level increases. It also means that it doesn't
+                  increase at a constant rate, which is a cool effect, as it somewhat represents the body fighting off the infection
+                 */
+                //if(infectionChance> random.nextFloat()){
                     playerInfection.increaseInfectionLevel(1);
-                }
+                //}
             });
         }
     }

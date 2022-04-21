@@ -2,7 +2,7 @@ package com.csixtyone.minecraft_infection;
 
 
 import com.csixtyone.minecraft_infection.InfectionLevelSystem.InfectionLevelConfig;
-import com.csixtyone.minecraft_infection.InfectionLevelSystem.data.InfectionLevelEvents;
+import com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.data.InfectionLevelEvents;
 import com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.Setup;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.item.ModItems;
@@ -40,6 +40,7 @@ public class MinecraftInfection {
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.addGenericListener(Entity.class, InfectionLevelEvents::onAttachCapabilitiesPlayer);
         forgeBus.addListener(InfectionLevelEvents::onRegisterCapabilities);
+        forgeBus.addListener(InfectionLevelEvents::onCommandsRegister);
 
 
         // Register ourselves for server and other game events we are interested in

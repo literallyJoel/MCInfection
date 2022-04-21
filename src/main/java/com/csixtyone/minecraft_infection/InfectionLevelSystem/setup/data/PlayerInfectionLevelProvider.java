@@ -1,4 +1,4 @@
-package com.csixtyone.minecraft_infection.InfectionLevelSystem.data;
+package com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.data;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

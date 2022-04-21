@@ -1,19 +1,22 @@
-package com.csixtyone.minecraft_infection.InfectionLevelSystem.data;
+package com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.data;
 
 import net.minecraft.nbt.CompoundTag;
 
 public class PlayerInfectionLevel {
     private static int infectionLevel;
 
+    public PlayerInfectionLevel(){
+        infectionLevel = 0;
+    }
     public static int getInfectionLevel() {
         return infectionLevel;
     }
 
-    public void setInfectionLevel(int infectionLevel) {
+    public static void setInfectionLevel(int infectionLevel) {
         PlayerInfectionLevel.infectionLevel = infectionLevel;
     }
 
-    public void increaseInfectionLevel(int increaseAmount){
+    public static void increaseInfectionLevel(int increaseAmount){
         if(infectionLevel + increaseAmount <= 100){
             infectionLevel += increaseAmount;
         }else{
@@ -21,7 +24,7 @@ public class PlayerInfectionLevel {
         }
     }
 
-    public void decreaseInfectionLevel(int decreaseAmount){
+    public static void decreaseInfectionLevel(int decreaseAmount){
         if(infectionLevel - decreaseAmount >=0){
             infectionLevel -= decreaseAmount;
         }else{
