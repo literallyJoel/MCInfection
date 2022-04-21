@@ -2,7 +2,7 @@ package com.csixtyone.minecraft_infection.item;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.item.custom.InfectedCoalItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -54,6 +54,39 @@ public class ModItems {
 
     //Puredust
     public static final RegistryObject<Item> PUREDUST = ITEMS.register("puredust", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Ingot
+    public static final RegistryObject<Item> PURE_INGOT = ITEMS.register("pure_ingot", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Sword
+    public static final RegistryObject<Item> PURE_SWORD = ITEMS.register("pure_sword", () -> new SwordItem(ModTiers.PURE,2,3f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Infected Sword
+    public static final RegistryObject<Item> INFECTED_SWORD = ITEMS.register("infected_sword", () -> new SwordItem(ModTiers.INFECTED,4,3f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Pickaxe
+    public static final RegistryObject<Item> PURE_PICKAXE = ITEMS.register("pure_pickaxe", () -> new PickaxeItem(ModTiers.PURE,1,1f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Infected Pickaxe
+    public static final RegistryObject<Item> INFECTED_PICKAXE = ITEMS.register("infected_pickaxe", () -> new PickaxeItem(ModTiers.INFECTED,1,1f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Axe
+    public static final RegistryObject<Item> PURE_AXE = ITEMS.register("pure_axe", () -> new AxeItem(ModTiers.PURE,5,1f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Infected Axe
+    public static final RegistryObject<Item> INFECTED_AXE = ITEMS.register("infected_axe", () -> new AxeItem(ModTiers.INFECTED,4,0f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Shovel
+    public static final RegistryObject<Item> PURE_SHOVEL = ITEMS.register("pure_shovel", () -> new ShovelItem(ModTiers.PURE,0,2f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Infected Shovel
+    public static final RegistryObject<Item> INFECTED_SHOVEL = ITEMS.register("infected_shovel", () -> new ShovelItem(ModTiers.INFECTED,0,1f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Hoe
+    public static final RegistryObject<Item> PURE_HOE = ITEMS.register("pure_hoe", () -> new HoeItem(ModTiers.PURE,0,0f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Infected Hoe
+    public static final RegistryObject<Item> INFECTED_HOE = ITEMS.register("infected_hoe", () -> new HoeItem(ModTiers.INFECTED,0,0f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
