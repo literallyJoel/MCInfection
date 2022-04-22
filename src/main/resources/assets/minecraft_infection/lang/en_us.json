@@ -1,4 +1,12 @@
 {
+  "item.minecraft_infection.infected_helmet": "Infected Helmet",
+  "item.minecraft_infection.infected_chestplate": "Infected Chestplate",
+  "item.minecraft_infection.infected_leggings": "Infected Leggings",
+  "item.minecraft_infection.infected_boots": "Infected Boots",
+  "item.minecraft_infection.pure_helmet": "Pure Helmet",
+  "item.minecraft_infection.pure_chestplate": "Pure Chestplate",
+  "item.minecraft_infection.pure_leggings": "Pure Leggings",
+  "item.minecraft_infection.pure_boots": "Pure Boots",
   "item.minecraft_infection.infected_ingot": "Infected ingot",
   "item.minecraft_infection.infected_gold_ingot": "Infected Gold ingot",
   "item.minecraft_infection.infected_iron_ingot": "Infected Iron ingot",

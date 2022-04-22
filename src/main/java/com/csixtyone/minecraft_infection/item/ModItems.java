@@ -2,6 +2,7 @@ package com.csixtyone.minecraft_infection.item;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.item.custom.InfectedCoalItem;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -87,6 +88,31 @@ public class ModItems {
 
     //Infected Hoe
     public static final RegistryObject<Item> INFECTED_HOE = ITEMS.register("infected_hoe", () -> new HoeItem(ModTiers.INFECTED,0,0f, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Infected Helmet
+    public static final RegistryObject<Item> INFECTED_HELMET = ITEMS.register("infected_helmet", () -> new ArmorItem(ModArmorMaterials.INFECTED, EquipmentSlot.HEAD, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Infected Chestplate
+    public static final RegistryObject<Item> INFECTED_CHESTPLATE = ITEMS.register("infected_chestplate", () -> new ArmorItem(ModArmorMaterials.INFECTED, EquipmentSlot.CHEST, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Infected Legging
+    public static final RegistryObject<Item> INFECTED_LEGGING = ITEMS.register("infected_leggings", () -> new ArmorItem(ModArmorMaterials.INFECTED, EquipmentSlot.LEGS, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //infected boots
+    public static final RegistryObject<Item> INFECTED_BOOTS = ITEMS.register("infected_boots", () -> new ArmorItem(ModArmorMaterials.INFECTED, EquipmentSlot.FEET, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Helmet
+    public static final RegistryObject<Item> PURE_HELMET = ITEMS.register("pure_helmet", () -> new ArmorItem(ModArmorMaterials.PURE, EquipmentSlot.HEAD, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Chestplate
+    public static final RegistryObject<Item> PURE_CHESTPLATE = ITEMS.register("pure_chestplate", () -> new ArmorItem(ModArmorMaterials.PURE, EquipmentSlot.CHEST, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure Legging
+    public static final RegistryObject<Item> PURE_LEGGING = ITEMS.register("pure_leggings", () -> new ArmorItem(ModArmorMaterials.PURE, EquipmentSlot.LEGS, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
+    //Pure boots
+    public static final RegistryObject<Item> Pure_BOOTS = ITEMS.register("pure_boots", () -> new ArmorItem(ModArmorMaterials.PURE, EquipmentSlot.FEET, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
