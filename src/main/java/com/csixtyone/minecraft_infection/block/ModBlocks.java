@@ -109,7 +109,7 @@ public class ModBlocks {
 
     //Infected CobbleStone
     public static final RegistryObject<Block> INFECTED_COBBLESTONE = registerBlock("infected_cobblestone",
-            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(9F)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(9F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Deepslate Gold Ore
@@ -119,17 +119,22 @@ public class ModBlocks {
 
     //Infected Deepslate Iron Ore
     public static final RegistryObject<Block> INFECTED_DEEPSLATE_IRON_ORE = registerBlock("infected_deepslate_iron_ore",
-            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(9F)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(9F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Deepslate RedStone Ore
     public static final RegistryObject<Block> INFECTED_DEEPSLATE_REDSTONE_ORE = registerBlock("infected_deepslate_redstone_ore",
-            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_REDSTONE_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(8F)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(8F)),
             ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Deepslate Lapis Ore
     public static final RegistryObject<Block> INFECTED_DEEPSLATE_LAPIS_ORE = registerBlock("infected_deepslate_lapis_ore",
-            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_LAPIS_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(8F)),
+            () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(8F)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //PureDust ore
+    public static final RegistryObject<Block> PUREDUST_ORE = registerBlock("puredust_ore",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     public static void register(IEventBus eventBus){

@@ -8,6 +8,7 @@
     "minecraft_infection:infected_deepslate_redstone_ore",
     "minecraft_infection:infected_deepslate_lapis_ore",
     "minecraft_infection:infected_deepslate_iron_ore",
-    "minecraft_infection:infected_deepslate_gold_ore"
+    "minecraft_infection:infected_deepslate_gold_ore",
+    "minecraft_infection:puredust_ore"
   ]
 }
