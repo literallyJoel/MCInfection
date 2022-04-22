@@ -6,7 +6,7 @@ public class PlayerInfectionLevel {
     private static int infectionLevel;
 
     public PlayerInfectionLevel(){
-        infectionLevel = 0;
+        
     }
     public static int getInfectionLevel() {
         return infectionLevel;
@@ -17,20 +17,21 @@ public class PlayerInfectionLevel {
     }
 
     public static void increaseInfectionLevel(int increaseAmount){
-        if(infectionLevel + increaseAmount <= 100){
-            infectionLevel += increaseAmount;
-        }else{
-            infectionLevel = 100;
-        }
+        //This seems odd, but it fixes a bug where the infection level always starts at 0 when loading into a world.
+        int pInfectionLevel = PlayerInfectionLevel.getInfectionLevel();
+        int newLevel = pInfectionLevel + increaseAmount;
+
+        infectionLevel = Math.min(newLevel, 100);
     }
 
     public static void decreaseInfectionLevel(int decreaseAmount){
-        if(infectionLevel - decreaseAmount >=0){
-            infectionLevel -= decreaseAmount;
-        }else{
-            infectionLevel = 0;
-        }
+        //This seems odd, but it fixes a bug where the infection level always starts at 0 when loading into a world.
+        int pInfectionLevel = PlayerInfectionLevel.getInfectionLevel();
+        int newLevel = pInfectionLevel - decreaseAmount;
+
+        infectionLevel = Math.max(newLevel, 0);
     }
+
 
     public void saveNBTData(CompoundTag tag){
         tag.putInt("infectionLevel", infectionLevel);

@@ -1,4 +1,5 @@
 package com.csixtyone.minecraft_infection.block.custom;
+import com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.data.PlayerInfectionLevel;
 import com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.data.PlayerInfectionLevelProvider;
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
@@ -126,7 +127,7 @@ public class InfectedBlock extends Block {
     public void stepOn(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @NotNull Entity pEntity) {
         //First we check if it's a player standing on the block
         if(pEntity instanceof Player){
-            //If it is, we check to see if they have an infection level attatched to them
+            //If it is, we check to see if they have an infection level attached to them
             pEntity.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(playerInfection -> {
                 //If they do we can increase the infection level
                 //We first create a random float to and use it to set the chance of the infection level increasing to 0.1%
@@ -137,7 +138,7 @@ public class InfectedBlock extends Block {
                   increase at a constant rate, which is a cool effect, as it somewhat represents the body fighting off the infection
                  */
                 //if(infectionChance> random.nextFloat()){
-                    playerInfection.increaseInfectionLevel(1);
+                    PlayerInfectionLevel.increaseInfectionLevel(1);
                 //}
             });
         }
