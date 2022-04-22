@@ -1,24 +1,24 @@
 package com.csixtyone.minecraft_infection;
 
+
 import com.csixtyone.minecraft_infection.block.ModBlocks;
+import com.csixtyone.minecraft_infection.commands.RegisterCommands;
+import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
+import com.csixtyone.minecraft_infection.infection_system.setup.InfectionLevelEvents;
+import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
+import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MinecraftInfection.MOD_ID)
@@ -39,11 +39,19 @@ public class MinecraftInfection {
 
         eventBus.addListener(this::setup);
 
-
-
-        // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
+        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+        forgeBus.register(this);
+        Messages.register();
+        forgeBus.addGenericListener(Entity.class, InfectionLevelEvents::onAttachCapabilitiesPlayer);
+        forgeBus.addListener(InfectionLevelEvents::onPlayerCloned);
+        forgeBus.addListener(InfectionLevelEvents::onRegisterCapabilities);
+        forgeBus.addListener(InfectionLevelEvents::onWorldTick);
+        forgeBus.addListener(RegisterCommands::onCommandsRegister);
+        forgeBus.addListener(InfectionEffects::onPlayerTick);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.addListener(ClientSetup:: init));
     }
+
+
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
