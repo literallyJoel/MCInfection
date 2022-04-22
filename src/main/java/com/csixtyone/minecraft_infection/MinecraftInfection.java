@@ -3,11 +3,13 @@ package com.csixtyone.minecraft_infection;
 
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
+import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
 import com.csixtyone.minecraft_infection.infection_system.setup.InfectionLevelEvents;
 import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import com.csixtyone.minecraft_infection.potion.ModPotions;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,6 +38,8 @@ public class MinecraftInfection {
         //Registers the custom blocks and items as implemented in the ModBlocks and ModItems classes.
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModEffects.register(eventBus);
+        ModPotions.register(eventBus);
 
         eventBus.addListener(this::setup);
 
