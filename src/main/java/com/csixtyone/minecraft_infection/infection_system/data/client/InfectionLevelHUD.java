@@ -1,7 +1,6 @@
-package com.csixtyone.minecraft_infection.InfectionLevelSystem.client;
+package com.csixtyone.minecraft_infection.infection_system.data.client;
 
-import com.csixtyone.minecraft_infection.InfectionLevelSystem.InfectionLevelConfig;
-import com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.data.PlayerInfectionLevel;
+
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -34,7 +33,6 @@ public class InfectionLevelHUD {
             }
         }
 
-        System.out.println(PlayerInfectionLevel.getInfectionLevel());
         if(wearingArmour || minecraft.player.getAirSupply() < minecraft.player.getMaxAirSupply()){
             //This places it just above the armour/oxygen bars
             yPos -=10;
@@ -54,7 +52,7 @@ public class InfectionLevelHUD {
 
         /*This creates a percentage of the infection level, so we can scale the 1-100 infection level to the 182 pixels
         that would represent the full image of a fully infected player*/
-        int infectionLevelPercent = (int) (182*(PlayerInfectionLevel.getInfectionLevel()/100f));
+        int infectionLevelPercent = (int) (182*(InfectionLevelHandler.get()/100f));
 
         /*This renders the level of infection in the infection meter. It just renders the image up to the percentage
           of the player infection. The pVOffset here is 7, as the texture for this is 7 pixels from the top in the file*/

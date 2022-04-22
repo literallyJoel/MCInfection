@@ -1,10 +1,12 @@
 package com.csixtyone.minecraft_infection;
 
 
-import com.csixtyone.minecraft_infection.InfectionLevelSystem.InfectionLevelConfig;
-import com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.data.InfectionLevelEvents;
-import com.csixtyone.minecraft_infection.InfectionLevelSystem.setup.Setup;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
+import com.csixtyone.minecraft_infection.commands.RegisterCommands;
+import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
+import com.csixtyone.minecraft_infection.infection_system.setup.InfectionLevelEvents;
+import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
+import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Blocks;
@@ -34,20 +36,22 @@ public class MinecraftInfection {
         //Registers the custom blocks and items as implemented in the ModBlocks and ModItems classes.
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
-        InfectionLevelConfig.register();
+
         eventBus.addListener(this::setup);
 
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+        forgeBus.register(this);
+        Messages.register();
         forgeBus.addGenericListener(Entity.class, InfectionLevelEvents::onAttachCapabilitiesPlayer);
+        forgeBus.addListener(InfectionLevelEvents::onPlayerCloned);
         forgeBus.addListener(InfectionLevelEvents::onRegisterCapabilities);
-        forgeBus.addListener(InfectionLevelEvents::onCommandsRegister);
-
-
-        // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
-
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.addListener(Setup:: init));
+        forgeBus.addListener(InfectionLevelEvents::onWorldTick);
+        forgeBus.addListener(RegisterCommands::onCommandsRegister);
+        forgeBus.addListener(InfectionEffects::onPlayerTick);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.addListener(ClientSetup:: init));
     }
+
+
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
