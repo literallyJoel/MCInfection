@@ -1,12 +1,4 @@
 {
-  "item.minecraft_infection.infected_helmet": "Infected Helmet",
-  "item.minecraft_infection.infected_chestplate": "Infected Chestplate",
-  "item.minecraft_infection.infected_leggings": "Infected Leggings",
-  "item.minecraft_infection.infected_boots": "Infected Boots",
-  "item.minecraft_infection.pure_helmet": "Pure Helmet",
-  "item.minecraft_infection.pure_chestplate": "Pure Chestplate",
-  "item.minecraft_infection.pure_leggings": "Pure Leggings",
-  "item.minecraft_infection.pure_boots": "Pure Boots",
   "item.minecraft_infection.infected_ingot": "Infected ingot",
   "item.minecraft_infection.infected_gold_ingot": "Infected Gold ingot",
   "item.minecraft_infection.infected_iron_ingot": "Infected Iron ingot",
@@ -61,4 +53,11 @@
   "item.minecraft.potion.effect.purify_potion": "Purifying Potion",
   "item.minecraft.splash_potion.effect.purify_potion": "Splash Potion of Purifying",
   "item.minecraft.lingering_potion.effect.purify_potion": "Lingering Potion of Purifying"
+  "block.minecraft_infection.infected_deepslate_lapis_ore": "Infected Deepslate Lapis Ore",
+  "block.minecraft_infection.broken_purifier": "Broken Purifier",
+  "block.minecraft_infection.broken_purifier_input": "Broken Purifier Input",
+  "block.minecraft_infection.broken_purifier_output": "Broken Purifier Output",
+  "block.minecraft_infection.purifier": "Purifier",
+  "block.minecraft_infection.purifier_input": "Purifier Input",
+  "block.minecraft_infection.purifier_output": "Purifier Output"
 }
