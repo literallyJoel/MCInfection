@@ -2,6 +2,7 @@ package com.csixtyone.minecraft_infection;
 
 
 import com.csixtyone.minecraft_infection.block.ModBlocks;
+import com.csixtyone.minecraft_infection.block.entity.ModBlockEntities;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
 import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
@@ -10,7 +11,11 @@ import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import com.csixtyone.minecraft_infection.potion.ModPotions;
+import com.csixtyone.minecraft_infection.screen.ModMenuTypes;
+import com.csixtyone.minecraft_infection.screen.PurifierInputScreen;
 import com.csixtyone.minecraft_infection.util.BetterBrewingRecipe;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
@@ -20,6 +25,7 @@ import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -43,8 +49,10 @@ public class MinecraftInfection {
         ModBlocks.register(eventBus);
         ModEffects.register(eventBus);
         ModPotions.register(eventBus);
-
+        ModBlockEntities.register(eventBus);
+        ModMenuTypes.register(eventBus);
         eventBus.addListener(this::setup);
+        eventBus.addListener(this::clientSetup);
 
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.register(this);
@@ -59,7 +67,9 @@ public class MinecraftInfection {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.addListener(ClientSetup:: init));
     }
 
-
+    private void clientSetup(final FMLClientSetupEvent event){
+        MenuScreens.register(ModMenuTypes.PURIFIER_INPUT_MENU.get(), PurifierInputScreen::new);
+    }
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code

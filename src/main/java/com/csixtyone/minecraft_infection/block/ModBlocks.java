@@ -3,6 +3,7 @@ package com.csixtyone.minecraft_infection.block;
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.custom.InfectedBlock;
 import com.csixtyone.minecraft_infection.block.custom.PurifiedBlock;
+import com.csixtyone.minecraft_infection.block.custom.PurifierInputBlock;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import net.minecraft.resources.ResourceLocation;
@@ -66,6 +67,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> INFECTED_GOLD_ORE = registerBlock("infected_gold_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
+
 
     //Infected Diamond Ore
     public static final RegistryObject<Block> INFECTED_DIAMOND_ORE = registerBlock("infected_diamond_ore",
