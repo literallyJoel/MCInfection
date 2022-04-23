@@ -53,6 +53,8 @@
   "effect.minecraft_infection.infection": "Infected",
   "effect.minecraft_infection.purify": "Purifying",
 
+  "item.minecraft.tipped_arrow.effect.purify_potion": "Arrow of Purity",
+  "item.minecraft.tipped_arrow.effect.infection_potion": "Arrow of Infection",
   "item.minecraft.potion.effect.infection_potion": "Infection Potion",
   "item.minecraft.splash_potion.effect.infection_potion": "Splash Potion of Infection",
   "item.minecraft.lingering_potion.effect.infection_potion": "Lingering Potion of Infection",
