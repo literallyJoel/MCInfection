@@ -42,10 +42,14 @@ minecraft {
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
-    runs {
-        client {
-            workingDirectory project.file('run')
 
+
+    runs {
+
+
+        client {
+
+            workingDirectory project.file('run')
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
             // "SCAN": For mods scan.
@@ -66,6 +70,8 @@ minecraft {
                     source sourceSets.main
                 }
             }
+
+
         }
 
         server {
