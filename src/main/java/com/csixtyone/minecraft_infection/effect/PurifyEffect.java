@@ -1,6 +1,8 @@
 package com.csixtyone.minecraft_infection.effect;
 
+import com.csixtyone.minecraft_infection.infection_system.data.PlayerInfectionLevelProvider;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionLevelHandler;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,11 +15,12 @@ public class PurifyEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (!pLivingEntity.level.isClientSide() && pLivingEntity instanceof Player) {
-            InfectionLevelHandler.decrease(1);
-        }
+        if (pLivingEntity instanceof ServerPlayer Player) {
+            Player.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(cap -> {
+                cap.decrease(1);
+            });
         super.applyEffectTick(pLivingEntity, pAmplifier);
-    }
+    }}
 
     @Override
     public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
