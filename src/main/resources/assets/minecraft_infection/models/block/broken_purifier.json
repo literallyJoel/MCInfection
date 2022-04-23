@@ -1,0 +1,9 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "front": "minecraft_infection:block/broken_purifier_front",
+    "top": "minecraft_infection:block/broken_purifier_top",
+    "side": "minecraft_infection:block/broken_purifier_bottom",
+    "bottom": "minecraft_infection:block/broken_purifier_bottom"
+  }
+}

@@ -131,6 +131,10 @@ public class ModBlocks {
             () -> new InfectedBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().lightLevel((state) -> 5).strength(8F)),
             ModCreativeModeTab.INFECTION_TAB);
 
+    //Broken Purifier Block
+    public static final RegistryObject<Block> BROKEN_PURIFIER = registerBlock("broken_purifier",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_REDSTONE);
+
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }

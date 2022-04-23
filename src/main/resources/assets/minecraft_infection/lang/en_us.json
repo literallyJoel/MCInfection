@@ -25,5 +25,6 @@
   "block.minecraft_infection.infected_deepslate_gold_ore": "Infected Deepslate Gold Ore",
   "block.minecraft_infection.infected_deepslate_iron_ore": "Infected Deepslate Iron Ore",
   "block.minecraft_infection.infected_deepslate_redstone_ore": "Infected Deepslate Redstone Ore",
-  "block.minecraft_infection.infected_deepslate_lapis_ore": "Infected Deepslate Lapis Ore"
+  "block.minecraft_infection.infected_deepslate_lapis_ore": "Infected Deepslate Lapis Ore",
+  "block.minecraft_infection.broken_purifier": "Broken Purifier"
 }
