@@ -130,11 +130,7 @@ public class InfectedBlock extends Block {
         //First we check if it's a player standing on the block
         if (pEntity instanceof Player) {
             if(!((Player) pEntity).isCreative()) {
-                Random random = new Random();
-
-                if (0.05f > random.nextFloat()) {
-                    InfectionLevelHandler.increase(1);
-                }
+                InfectionLevelHandler.increase(1);
             }
         }
     }

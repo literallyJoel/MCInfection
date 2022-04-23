@@ -7,7 +7,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
 public class SetInfectionLevelCmd {
-
+    //Implements ingame command for setting infection level
     public SetInfectionLevelCmd(CommandDispatcher<CommandSourceStack> disp){
         disp.register(Commands.literal("infectionlevel").then(Commands.literal("set").then(Commands.argument("New Infection Level", IntegerArgumentType.integer(0, 100))
                 .executes(command -> setInfectionLevel(IntegerArgumentType.getInteger(command, "New Infection Level"))))));

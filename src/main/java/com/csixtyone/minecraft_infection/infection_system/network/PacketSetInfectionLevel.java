@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 public class PacketSetInfectionLevel {
     private final int newAmount;
 
+    //Sends a message to the server setting the infection level for the player
     public PacketSetInfectionLevel(int newAmount){
         this.newAmount = newAmount;
     }

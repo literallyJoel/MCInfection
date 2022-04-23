@@ -6,6 +6,8 @@ import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
@@ -35,34 +37,42 @@ public enum ModArmorMaterials implements ArmorMaterial {
         this.repairIngredient = new LazyLoadedValue<>(p_40481_);
     }
 
+    @Override
     public int getDurabilityForSlot(EquipmentSlot pSlot) {
         return HEALTH_PER_SLOT[pSlot.getIndex()] * this.durabilityMultiplier;
     }
 
+    @Override
     public int getDefenseForSlot(EquipmentSlot pSlot) {
         return this.slotProtections[pSlot.getIndex()];
     }
 
+    @Override
     public int getEnchantmentValue() {
         return this.enchantmentValue;
     }
 
-    public SoundEvent getEquipSound() {
+    @Override
+    public @NotNull SoundEvent getEquipSound() {
         return this.sound;
     }
 
-    public Ingredient getRepairIngredient() {
+    @Override
+    public @NotNull Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
     }
 
-    public String getName() {
+    @Override
+    public @NotNull String getName() {
         return MinecraftInfection.MOD_ID + ":" + this.name;
     }
 
+    @Override
     public float getToughness() {
         return this.toughness;
     }
 
+    @Override
     public float getKnockbackResistance() {
         return this.knockbackResistance;
     }

@@ -11,11 +11,13 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+//This all deals with attaching the data about a players infection level to the player
 public class PlayerInfectionLevelProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
     public static Capability<PlayerInfectionLevel> PLAYER_INFECTION_LEVEL = CapabilityManager.get(new CapabilityToken<PlayerInfectionLevel>() {});
     private PlayerInfectionLevel playerInfectionLevel = null;
     private final LazyOptional<PlayerInfectionLevel> opt = LazyOptional.of(this::createPlayerInfectionLevel);
 
+    //Creates a new player infection level if one doesn't exist in the capabiltiy
     @NotNull
     private PlayerInfectionLevel createPlayerInfectionLevel(){
         if(playerInfectionLevel == null){
@@ -24,6 +26,7 @@ public class PlayerInfectionLevelProvider implements ICapabilityProvider, INBTSe
         return playerInfectionLevel;
     }
 
+    //Returns the capability if it exists/is the expected value, else returns empty
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap){
@@ -33,12 +36,14 @@ public class PlayerInfectionLevelProvider implements ICapabilityProvider, INBTSe
         return LazyOptional.empty();
     }
 
+    //As above method
     @NotNull
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side){
         return getCapability(cap);
     }
 
+    //Deals with saving and loading data to and from disk
     @Override
     public CompoundTag serializeNBT(){
         CompoundTag tag = new CompoundTag();

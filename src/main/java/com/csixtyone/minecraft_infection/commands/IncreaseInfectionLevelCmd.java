@@ -7,7 +7,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
 public class IncreaseInfectionLevelCmd {
-    //NOTE: The event listener for this and all others is infection_system.setup.InfectionLevelEvents
+   //Defines the ingame command for increasing infection level
     public IncreaseInfectionLevelCmd(CommandDispatcher<CommandSourceStack> disp){
         disp.register(Commands.literal("infectionlevel").then(Commands.literal("add").then(Commands.argument("Increase Amount", IntegerArgumentType.integer(0, 100))
                 .executes(command -> increaseInfectionLevel(IntegerArgumentType.getInteger(command, "Increase Amount"))))));

@@ -48,6 +48,7 @@ public class MinecraftInfection {
         forgeBus.addListener(InfectionLevelEvents::onWorldTick);
         forgeBus.addListener(RegisterCommands::onCommandsRegister);
         forgeBus.addListener(InfectionEffects::onPlayerTick);
+        forgeBus.addListener(InfectionLevelEvents::onPlayerAttack);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.addListener(ClientSetup:: init));
     }
 

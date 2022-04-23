@@ -7,7 +7,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
 public class DecreaseInfectionLevelCmd {
-    //NOTE: The event listener for this and all others is infection_system.setup.InfectionLevelEvents
+    //Defines the ingame command for decreasing infection level
     public DecreaseInfectionLevelCmd(CommandDispatcher<CommandSourceStack> disp){
         disp.register(Commands.literal("infectionlevel").then(Commands.literal("remove").then(Commands.argument("Decrease Amount", IntegerArgumentType.integer(0, 100))
                 .executes(command -> decreaseInfectionLevel(IntegerArgumentType.getInteger(command, "Decrease Amount"))))));

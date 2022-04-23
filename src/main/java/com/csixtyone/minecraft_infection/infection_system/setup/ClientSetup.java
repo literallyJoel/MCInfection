@@ -15,6 +15,7 @@ public class ClientSetup {
 
 
     public static void init(FMLClientSetupEvent event){
+        //Registers the Infection Level HUD so it displays.
         OverlayRegistry.registerOverlayAbove(HOTBAR_ELEMENT, "InfectionLevel", InfectionLevelHUD.INFECTION_LEVEL_HUD);
     }
 }

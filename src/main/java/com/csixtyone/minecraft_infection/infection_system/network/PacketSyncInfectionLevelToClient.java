@@ -6,6 +6,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+//Sends the infection level for the player from the server to the client so the client can access the player's infection level
 public class PacketSyncInfectionLevelToClient {
     private final int infectionLevel;
 

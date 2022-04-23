@@ -8,6 +8,8 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.function.Supplier;
 
 public class PacketIncreaseInfectionLevel {
+
+    //sends a message to the server telling it to increase the infection level for the player
     private final int increaseAmount;
     public PacketIncreaseInfectionLevel(int increaseAmount){
         this.increaseAmount = increaseAmount;

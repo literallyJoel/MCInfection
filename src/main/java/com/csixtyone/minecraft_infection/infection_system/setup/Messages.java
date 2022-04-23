@@ -28,6 +28,8 @@ public class Messages {
 
         INSTANCE = net;
 
+
+        //Registers all the messages the mod uses
         net.messageBuilder(PacketIncreaseInfectionLevel.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PacketIncreaseInfectionLevel::new)
                 .encoder(PacketIncreaseInfectionLevel::toBytes)
