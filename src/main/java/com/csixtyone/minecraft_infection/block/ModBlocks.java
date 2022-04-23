@@ -2,6 +2,7 @@ package com.csixtyone.minecraft_infection.block;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.custom.InfectedBlock;
+import com.csixtyone.minecraft_infection.block.custom.PurifiedBlock;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import net.minecraft.resources.ResourceLocation;
@@ -135,6 +136,16 @@ public class ModBlocks {
     //PureDust ore
     public static final RegistryObject<Block> PUREDUST_ORE = registerBlock("puredust_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Puredust Block
+    public static final RegistryObject<Block> PUREDUST_BLOCK = registerBlock("puredust_block",
+            () -> new PurifiedBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Block
+    public static final RegistryObject<Block> INFECTED_BLOCK = registerBlock("infected_block",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).requiresCorrectToolForDrops().lightLevel((state) -> 5)),
             ModCreativeModeTab.INFECTION_TAB);
 
     public static void register(IEventBus eventBus){
