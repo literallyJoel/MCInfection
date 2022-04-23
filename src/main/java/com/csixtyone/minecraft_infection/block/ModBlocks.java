@@ -2,6 +2,7 @@ package com.csixtyone.minecraft_infection.block;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.custom.InfectedBlock;
+import com.csixtyone.minecraft_infection.block.custom.PurifierInputBlock;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import net.minecraft.resources.ResourceLocation;
@@ -135,6 +136,11 @@ public class ModBlocks {
     //PureDust ore
     public static final RegistryObject<Block> PUREDUST_ORE = registerBlock("puredust_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Purifier InputBlock
+    public static final RegistryObject<Block> PURIFIER_INPUT = registerBlock("purifier_input",
+            () -> new PurifierInputBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);
 
     public static void register(IEventBus eventBus){
