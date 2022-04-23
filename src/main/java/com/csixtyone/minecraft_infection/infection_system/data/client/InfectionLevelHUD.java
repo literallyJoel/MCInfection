@@ -2,6 +2,7 @@ package com.csixtyone.minecraft_infection.infection_system.data.client;
 
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
+import com.csixtyone.minecraft_infection.infection_system.data.PlayerInfectionLevel;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -46,13 +47,13 @@ public class InfectionLevelHUD {
         //Tells the render system to use the infection meter texture and not to colour it
         RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
         RenderSystem.setShaderTexture(0, infectionHudBar);
-        //This renders the empty bar, and is set to 182 as the full width of the image should alwasy be present
+        //This renders the empty bar, and is set to 182 as the full width of the image should always be present
         //pVoffset is set to 0 as it is the first texture in the file, 0 pixels from the top
         render(poseStack, yPos, 0, 182);
 
         /*This creates a percentage of the infection level, so we can scale the 1-100 infection level to the 182 pixels
         that would represent the full image of a fully infected player*/
-        int infectionLevelPercent = 182*(InfectionLevelHandler.getPercent());
+        int infectionLevelPercent = (int)((182*(InfectionLevelHandler.getPercent()/ (float)PlayerInfectionLevel.MAX_INFECTION_LEVEL)*100));
 
         /*This renders the level of infection in the infection meter. It just renders the image up to the percentage
           of the player infection. The pVOffset here is 7, as the texture for this is 7 pixels from the top in the file*/

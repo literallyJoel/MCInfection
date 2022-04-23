@@ -27,7 +27,8 @@ public class InfectionLevelHandler {
 
     //gets the value by percentage rather than the absolute value
     public static int getPercent(){
-        return (ClientInfectionLevelData.getInfectionLevel()/PlayerInfectionLevel.MAX_INFECTION_LEVEL)*100;
+        float infectionLevel = (float)get();
+        return (int)((infectionLevel/PlayerInfectionLevel.MAX_INFECTION_LEVEL)*100);
     }
     //increases by percentage rather than absolute value
     public static void increasePercent(int percent){

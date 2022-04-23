@@ -68,11 +68,12 @@ public class InfectionLevelEvents {
       it increases infection level of other player by 5
      */
     public static void onPlayerAttack(AttackEntityEvent e) {
+        //ToDo: Test Balancing with new increase value.
         if (e.getTarget() instanceof ServerPlayer attackedPlayer && e.getPlayer() instanceof ServerPlayer attackingPlayer) {
             Item attackingItem = attackingPlayer.getMainHandItem().getItem();
             if (infectedAttackItems.contains(attackingItem)) {
                 attackedPlayer.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(cap -> {
-                    cap.increase(25);
+                    cap.increase(10000);
                 });
             }
         }

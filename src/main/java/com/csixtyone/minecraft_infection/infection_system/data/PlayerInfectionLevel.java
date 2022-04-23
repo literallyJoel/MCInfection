@@ -4,7 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 
 public class PlayerInfectionLevel {
     int infectionLevel;
-    public static final int MAX_INFECTION_LEVEL = 1000;
+    public static final int MAX_INFECTION_LEVEL = 100000;
     //Gets the infection level
     public int get(){
         return infectionLevel;
@@ -15,7 +15,7 @@ public class PlayerInfectionLevel {
         if(infectionLevel<0){
             this.infectionLevel =0;
         }else{
-            this.infectionLevel = Math.min(100, infectionLevel);
+            this.infectionLevel = Math.min(MAX_INFECTION_LEVEL, infectionLevel);
         }
     }
 
@@ -23,6 +23,7 @@ public class PlayerInfectionLevel {
     public void increase(int increaseBy){
         this.infectionLevel = Math.min(MAX_INFECTION_LEVEL, infectionLevel+increaseBy);
     }
+
 
     //Decreases infection level by specified amount, caps at 0
     public void decrease(int decreaseBy){

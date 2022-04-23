@@ -17,7 +17,7 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = MinecraftInfection.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class InfectionEffects {
-
+    private static int waitTime = 100;
     //Runs on player ticks
     public static void onPlayerTick(TickEvent.PlayerTickEvent e) {
         Player player = e.player;
@@ -47,24 +47,30 @@ public class InfectionEffects {
 
         //Checks what armour the player is wearing. For the infected armour it increases the chance of the player infection increasing
         //If they're wearing pure armour, it increases the chances of the infection decreasing
-        int infectionIncreaseMultiplier = 0;
-        int infectionReductionMultiplier = 0;
+        int infectionIncreaseAmount = 0;
+        int infectionReductionAmount = 0;
         NonNullList<ItemStack> armour = player.getInventory().armor;
         for (ItemStack itemStack : armour) {
-            if (itemStack.is(ModItems.INFECTED_BOOTS.get())) infectionIncreaseMultiplier += 1;
-            else if (itemStack.is(ModItems.INFECTED_HELMET.get())) infectionIncreaseMultiplier +=2;
-            else if (itemStack.is(ModItems.INFECTED_LEGGING.get())) infectionIncreaseMultiplier += 3;
-            else if (itemStack.is(ModItems.INFECTED_CHESTPLATE.get())) infectionIncreaseMultiplier += 4;
-            else if (itemStack.is(ModItems.Pure_BOOTS.get())) infectionReductionMultiplier += 1;
-            else if (itemStack.is(ModItems.PURE_HELMET.get())) infectionReductionMultiplier += 2;
-            else if (itemStack.is(ModItems.PURE_LEGGING.get())) infectionReductionMultiplier+=3;
-            else if (itemStack.is(ModItems.PURE_CHESTPLATE.get())) infectionReductionMultiplier+=4;
+            if (itemStack.is(ModItems.INFECTED_BOOTS.get())) infectionIncreaseAmount += 1;
+            else if (itemStack.is(ModItems.INFECTED_HELMET.get())) infectionIncreaseAmount +=2;
+            else if (itemStack.is(ModItems.INFECTED_LEGGING.get())) infectionIncreaseAmount += 3;
+            else if (itemStack.is(ModItems.INFECTED_CHESTPLATE.get())) infectionIncreaseAmount += 4;
+            else if (itemStack.is(ModItems.Pure_BOOTS.get())) infectionReductionAmount += 1;
+            else if (itemStack.is(ModItems.PURE_HELMET.get())) infectionReductionAmount += 2;
+            else if (itemStack.is(ModItems.PURE_LEGGING.get())) infectionReductionAmount+=3;
+            else if (itemStack.is(ModItems.PURE_CHESTPLATE.get())) infectionReductionAmount+=4;
         }
 
 
+            //This makes sure that we don't try and open a connection with the serverside before it's fully loaded
+            //Without this the game crashes.
+            if(waitTime>0){
+                waitTime--;
+            }else{
+                InfectionLevelHandler.increase(infectionIncreaseAmount);
+                InfectionLevelHandler.decrease(infectionReductionAmount);
+            }
 
-            InfectionLevelHandler.increase(infectionIncreaseMultiplier);
-            InfectionLevelHandler.decrease(infectionReductionMultiplier);
 
     }
 
