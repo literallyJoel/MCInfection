@@ -3,15 +3,20 @@ package com.csixtyone.minecraft_infection;
 
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
+import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
 import com.csixtyone.minecraft_infection.infection_system.setup.InfectionLevelEvents;
 import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import com.csixtyone.minecraft_infection.potion.ModPotions;
+import com.csixtyone.minecraft_infection.util.BetterBrewingRecipe;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -36,6 +41,8 @@ public class MinecraftInfection {
         //Registers the custom blocks and items as implemented in the ModBlocks and ModItems classes.
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModEffects.register(eventBus);
+        ModPotions.register(eventBus);
 
         eventBus.addListener(this::setup);
 
@@ -58,6 +65,10 @@ public class MinecraftInfection {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
+                ModItems.PUREDUST.get(), ModPotions.PURIFY_POTION.get()));
+        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
+                ModItems.INFECTED_INGOT.get(), ModPotions.INFECTION_POTION.get()));
     }
 
 
