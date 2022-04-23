@@ -135,6 +135,14 @@ public class ModBlocks {
     public static final RegistryObject<Block> BROKEN_PURIFIER = registerBlock("broken_purifier",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_REDSTONE);
 
+    //Broken Purifier Input Block
+    public static final RegistryObject<Block> BROKEN_PURIFIER_INPUT = registerBlock("broken_purifier_input",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_REDSTONE);
+
+    //Broken Purifier Output Block
+    public static final RegistryObject<Block> BROKEN_PURIFIER_OUTPUT = registerBlock("broken_purifier_output",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_REDSTONE);
+
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }
