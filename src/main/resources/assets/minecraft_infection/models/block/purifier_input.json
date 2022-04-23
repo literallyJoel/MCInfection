@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "minecraft_infection:block/purifier_input_front",
+    "top": "minecraft_infection:block/purifier_io_top",
+    "side": "minecraft_infection:block/purifier_side",
+    "bottom": "minecraft_infection:block/purifier_side"
+  }
+}

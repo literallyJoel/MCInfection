@@ -28,5 +28,8 @@
   "block.minecraft_infection.infected_deepslate_lapis_ore": "Infected Deepslate Lapis Ore",
   "block.minecraft_infection.broken_purifier": "Broken Purifier",
   "block.minecraft_infection.broken_purifier_input": "Broken Purifier Input",
-  "block.minecraft_infection.broken_purifier_output": "Broken Purifier Output"
+  "block.minecraft_infection.broken_purifier_output": "Broken Purifier Output",
+  "block.minecraft_infection.purifier": "Purifier",
+  "block.minecraft_infection.purifier_input": "Purifier Input",
+  "block.minecraft_infection.purifier_output": "Purifier Output"
 }
