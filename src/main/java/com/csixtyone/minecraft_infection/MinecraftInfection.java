@@ -50,7 +50,7 @@ public class MinecraftInfection {
 
         ModFluids.register(eventBus);
         eventBus.addListener(this::setup);
-
+        eventBus.addListener(this::clientSetup);
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.register(this);
         Messages.register();

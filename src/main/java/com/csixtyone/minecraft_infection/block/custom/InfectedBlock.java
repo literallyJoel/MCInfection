@@ -130,7 +130,7 @@ public class InfectedBlock extends Block {
         //First we check if it's a player standing on the block
         if (pEntity instanceof Player) {
             if(!((Player) pEntity).isCreative()) {
-                    InfectionLevelHandler.increase(10);
+                    InfectionLevelHandler.increase(1);
             }
         }
     }
