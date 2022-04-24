@@ -6,9 +6,7 @@ import com.csixtyone.minecraft_infection.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -18,17 +16,18 @@ import net.minecraftforge.items.SlotItemHandler;
 public class PurifierMenu extends AbstractContainerMenu {
     private final PurifierBlockEntity blockEntity;
     private final Level level;
+    private final  ContainerData data;
 
     public PurifierMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public PurifierMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+    public PurifierMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.PURIFIER_MENU.get(), pContainerId);
         checkContainerSize(inv, 4);
         blockEntity = ((PurifierBlockEntity) entity);
         this.level = inv.player.level;
-
+        this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
@@ -38,11 +37,23 @@ public class PurifierMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 2, 62, 36));
             this.addSlot(new ModResultSlot(handler, 3, 116, 36));
         });
+
+        addDataSlots(data);
+    }
+
+    public boolean isCrafting() {
+        return data.get(0) > 0;
+    }
+
+    public int getScaledProgress() {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);  // Max Progress
+        int progressArrowSize = 22; // This is the height in pixels of your arrow
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
 
-    // must assign a slot number to each of the slots used by the GUI.
-    //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;

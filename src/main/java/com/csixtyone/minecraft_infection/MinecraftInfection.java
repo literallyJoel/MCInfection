@@ -11,6 +11,7 @@ import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import com.csixtyone.minecraft_infection.potion.ModPotions;
+import com.csixtyone.minecraft_infection.recipe.ModRecipes;
 import com.csixtyone.minecraft_infection.screen.ModMenuTypes;
 import com.csixtyone.minecraft_infection.screen.PurifierScreen;
 import com.csixtyone.minecraft_infection.util.BetterBrewingRecipe;
@@ -52,6 +53,7 @@ public class MinecraftInfection {
         ModPotions.register(eventBus);
         ModBlockEntities.register(eventBus);
         ModMenuTypes.register(eventBus);
+        ModRecipes.register(eventBus);
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
 
