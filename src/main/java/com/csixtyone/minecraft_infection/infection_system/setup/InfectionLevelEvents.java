@@ -4,6 +4,7 @@ import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.infection_system.data.InfectionLevelManager;
 import com.csixtyone.minecraft_infection.infection_system.data.PlayerInfectionLevel;
 import com.csixtyone.minecraft_infection.infection_system.data.PlayerInfectionLevelProvider;
+import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionLevelHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -14,6 +15,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.WorldEvent;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,7 +53,7 @@ public class InfectionLevelEvents {
         e.register(PlayerInfectionLevel.class);
     }
 
-    //When the world ticks, it creates a new instance of the infection level manager and calls it's tick method
+    //When the world ticks, it creates a new instance of the infection level manager and calls its tick method
     public static void onWorldTick(TickEvent.WorldTickEvent e) {
         if (!e.world.isClientSide) {
             if (e.phase != TickEvent.Phase.START) {
@@ -80,6 +83,11 @@ public class InfectionLevelEvents {
 
 
     }
+
+    public static void onWorldLoad(WorldEvent.Load e){
+        InfectionLevelHandler.isSafe = false;
+    }
+
 
 }
 
