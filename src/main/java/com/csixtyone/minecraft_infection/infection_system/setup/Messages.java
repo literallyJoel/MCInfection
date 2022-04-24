@@ -1,10 +1,7 @@
 package com.csixtyone.minecraft_infection.infection_system.setup;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
-import com.csixtyone.minecraft_infection.infection_system.network.PacketDecreaseInfectionLevel;
-import com.csixtyone.minecraft_infection.infection_system.network.PacketIncreaseInfectionLevel;
-import com.csixtyone.minecraft_infection.infection_system.network.PacketSetInfectionLevel;
-import com.csixtyone.minecraft_infection.infection_system.network.PacketSyncInfectionLevelToClient;
+import com.csixtyone.minecraft_infection.infection_system.network.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -53,6 +50,7 @@ public class Messages {
                 .encoder(PacketSyncInfectionLevelToClient::toBytes)
                 .consumer(PacketSyncInfectionLevelToClient::handle)
                 .add();
+
     }
 
     public static <MSG> void sendToServer(MSG msg){
