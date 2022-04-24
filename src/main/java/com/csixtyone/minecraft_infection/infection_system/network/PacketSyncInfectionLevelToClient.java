@@ -24,9 +24,7 @@ public class PacketSyncInfectionLevelToClient {
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context context = supplier.get();
-        context.enqueueWork(()->{
-            ClientInfectionLevelData.set(infectionLevel);
-        });
+        context.enqueueWork(()-> ClientInfectionLevelData.set(infectionLevel));
         return true;
     }
 }

@@ -53,7 +53,7 @@ public class InfectionLevelHUD {
 
         /*This creates a percentage of the infection level, so we can scale the 1-100 infection level to the 182 pixels
         that would represent the full image of a fully infected player*/
-        int infectionLevelPercent = (int)((182*(InfectionLevelHandler.getPercent()/ (float)PlayerInfectionLevel.MAX_INFECTION_LEVEL)*100));
+        int infectionLevelPercent = (int)(182*(InfectionLevelHandler.getPercent()/100f));
 
         /*This renders the level of infection in the infection meter. It just renders the image up to the percentage
           of the player infection. The pVOffset here is 7, as the texture for this is 7 pixels from the top in the file*/

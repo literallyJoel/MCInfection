@@ -15,15 +15,15 @@ public class InfectionLevelManager {
             count = 10;
 
             //Goes through every player currently connected to the server, gets their infection level, and syncs it to their clients
-            level.players().forEach(player ->{
-              if(player instanceof ServerPlayer serverPlayer){
-                  int infectionLevel = serverPlayer.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL)
-                          .map(PlayerInfectionLevel::get)
-                          .orElse(-1);
-                  Messages.sendToPlayer(serverPlayer, new PacketSyncInfectionLevelToClient(infectionLevel));
-              }
-
+            //Lets the client know that the server is loaded and ready to receive packets
+            level.players().stream().filter(player -> player instanceof ServerPlayer).map(player -> (ServerPlayer) player).forEach(serverPlayer -> {
+                int infectionLevel = serverPlayer.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL)
+                        .map(PlayerInfectionLevel::get)
+                        .orElse(-1);
+                Messages.sendToPlayer(serverPlayer, new PacketSyncInfectionLevelToClient(infectionLevel));
             });
         }
+
+
     }
 }

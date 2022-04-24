@@ -28,9 +28,8 @@ public class PacketDecreaseInfectionLevel {
 
         ServerPlayer player = context.getSender();
 
-        player.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(pil ->{
-            pil.decrease(decreaseAmount);
-        });
+        context.enqueueWork(()-> player.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(pil -> pil.decrease(decreaseAmount)));
+
         return true;
     }
 
