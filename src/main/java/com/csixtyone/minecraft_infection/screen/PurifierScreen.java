@@ -29,6 +29,7 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
 
         if(menu.isCrafting()) {
             blit(pPoseStack, x + 85, y + 33, 176, 0, menu.getScaledProgress(), 16);
+            blit(pPoseStack, x + 64, y + 55, 176, 82,12, 12);
         }
     }
 

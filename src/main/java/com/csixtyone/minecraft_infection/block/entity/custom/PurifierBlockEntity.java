@@ -47,7 +47,7 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 144;
 
     public PurifierBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.PURIFIER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);

@@ -45,6 +45,7 @@ public class PurifierMenu extends AbstractContainerMenu {
         return data.get(0) > 0;
     }
 
+
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
