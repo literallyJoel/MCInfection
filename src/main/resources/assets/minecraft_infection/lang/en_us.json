@@ -47,5 +47,7 @@
   "block.minecraft_infection.infected_deepslate_iron_ore": "Infected Deepslate Iron Ore",
   "block.minecraft_infection.infected_deepslate_redstone_ore": "Infected Deepslate Redstone Ore",
   "block.minecraft_infection.infected_deepslate_lapis_ore": "Infected Deepslate Lapis Ore",
-  "death.attack.minecraft_infection:infection": "%1$s died from infection."
+  "death.attack.minecraft_infection.infection": "%1$s died from infection.",
+  "block.minecraft_infection.infected_water_bucket": "Infected Water Bucket",
+  "fluid.minecraft_infection.infected_water": "Infected Water"
 }

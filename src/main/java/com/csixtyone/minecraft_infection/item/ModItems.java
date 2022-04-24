@@ -1,10 +1,10 @@
 package com.csixtyone.minecraft_infection.item;
 
 import com.csixtyone.minecraft_infection.MinecraftInfection;
+import com.csixtyone.minecraft_infection.fluid.ModFluids;
 import com.csixtyone.minecraft_infection.item.custom.InfectedCoalItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -113,7 +113,9 @@ public class ModItems {
     //Pure boots
     public static final RegistryObject<Item> Pure_BOOTS = ITEMS.register("pure_boots", () -> new ArmorItem(ModArmorMaterials.PURE, EquipmentSlot.FEET, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB)));
 
-
+    //Infected Water Bucket
+    public static final RegistryObject<Item> INFECTED_WATER_BUCKET = ITEMS.register("infected_water_bucket", () ->
+            new BucketItem(ModFluids.INFECTED_WATER_FLUID, new Item.Properties().tab(ModCreativeModeTab.INFECTION_TAB).durability(500)));
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

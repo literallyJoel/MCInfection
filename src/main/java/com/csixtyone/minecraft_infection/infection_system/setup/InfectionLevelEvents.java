@@ -16,6 +16,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,14 @@ import static com.csixtyone.minecraft_infection.item.ModItems.*;
 
 
 public class InfectionLevelEvents {
+    
+    public static void register(IEventBus bus){
+        bus.addGenericListener(Entity.class, InfectionLevelEvents::onAttachCapabilitiesPlayer);
+        bus.addListener(InfectionLevelEvents::onPlayerCloned);
+        bus.addListener(InfectionLevelEvents::onRegisterCapabilities);
+        bus.addListener(InfectionLevelEvents::onWorldTick);
+        bus.addListener(InfectionLevelEvents::onPlayerAttack);
+    }
 
     //This fires when capabilities are first attached to the player (on entering the world)
     //It checks if the player has an infection level capability and if they don't, it attaches one.

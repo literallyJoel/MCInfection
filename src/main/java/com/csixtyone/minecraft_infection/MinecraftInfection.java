@@ -3,11 +3,14 @@ package com.csixtyone.minecraft_infection;
 
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
+import com.csixtyone.minecraft_infection.fluid.ModFluids;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
 import com.csixtyone.minecraft_infection.infection_system.setup.InfectionLevelEvents;
 import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,6 +18,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -36,7 +40,7 @@ public class MinecraftInfection {
         //Registers the custom blocks and items as implemented in the ModBlocks and ModItems classes.
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
-
+        ModFluids.register(eventBus);
         eventBus.addListener(this::setup);
 
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -53,6 +57,11 @@ public class MinecraftInfection {
     }
 
 
+    private void clientSetup(final FMLClientSetupEvent e){
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLUID.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLOWING.get(), RenderType.translucent());
+    }
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
