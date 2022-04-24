@@ -1,5 +1,7 @@
 package com.csixtyone.minecraft_infection.block.custom;
 
+import com.csixtyone.minecraft_infection.MinecraftInfection;
+import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.block.entity.ModBlockEntities;
 import com.csixtyone.minecraft_infection.block.entity.custom.PurifierBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
@@ -81,16 +84,35 @@ public class PurifierStationBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof PurifierBlockEntity) {
-                NetworkHooks.openGui(((ServerPlayer)pPlayer), (PurifierBlockEntity)entity, pPos);
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+            if (!pLevel.isClientSide()) {
+                if(canOpenInterface(pLevel,pPos)){
+                BlockEntity entity = pLevel.getBlockEntity(pPos);
+                if(entity instanceof PurifierBlockEntity) {
+                    NetworkHooks.openGui(((ServerPlayer)pPlayer), (PurifierBlockEntity)entity, pPos);
+                } else {
+                    throw new IllegalStateException("Our Container provider is missing!");
+                }
             }
         }
 
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
+    }
+
+    private boolean canOpenInterface(Level pLevel,BlockPos pPos){
+        boolean HasOutputPlaced = false;
+        boolean HasInputPlaced = false;
+        BlockState[] blockStates = new BlockState[2];
+        blockStates[0] = (pLevel.getBlockState(pPos.east()));
+        blockStates[1] = (pLevel.getBlockState(pPos.west()));
+        if (blockStates[0].getBlock() == ModBlocks.PURIFIER_INPUT.get() ||blockStates[1].getBlock() == ModBlocks.PURIFIER_INPUT.get()){
+            HasInputPlaced = true;
+        }
+        if (blockStates[0].getBlock() == ModBlocks.PURIFIER_OUTPUT.get() || blockStates[1].getBlock() == ModBlocks.PURIFIER_OUTPUT.get()){
+            HasOutputPlaced = true;
+        }
+        System.out.println("input:" + HasInputPlaced);
+        System.out.println("output:" + HasOutputPlaced);
+        return HasInputPlaced && HasOutputPlaced;
     }
 
     @Nullable
