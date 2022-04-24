@@ -79,8 +79,6 @@ public class MinecraftInfection {
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_BLOCK.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLUID.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLOWING.get(), RenderType.translucent());
-    }
-    private void clientSetup(final FMLClientSetupEvent event){
         MenuScreens.register(ModMenuTypes.PURIFIER_MENU.get(), PurifierScreen::new);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.PURIFIER.get(), RenderType.translucent());
     }
