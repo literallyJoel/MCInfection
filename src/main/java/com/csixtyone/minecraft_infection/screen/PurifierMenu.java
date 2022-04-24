@@ -33,10 +33,10 @@ public class PurifierMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 25, 26));
-            this.addSlot(new SlotItemHandler(handler, 1, 25, 52));
-            this.addSlot(new SlotItemHandler(handler, 2, 73, 38));
-            this.addSlot(new ModResultSlot(handler, 3, 128, 38));
+            this.addSlot(new SlotItemHandler(handler, 0, 26, 20));
+            this.addSlot(new SlotItemHandler(handler, 1, 26, 51));
+            this.addSlot(new SlotItemHandler(handler, 2, 62, 36));
+            this.addSlot(new ModResultSlot(handler, 3, 116, 36));
         });
     }
 
@@ -90,7 +90,7 @@ public class PurifierMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.PURIFIER_INPUT.get());
+                pPlayer, ModBlocks.PURIFIER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
