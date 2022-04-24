@@ -1,7 +1,7 @@
 package com.csixtyone.minecraft_infection.screen;
 
 import com.csixtyone.minecraft_infection.block.ModBlocks;
-import com.csixtyone.minecraft_infection.block.entity.custom.PurifierInputBlockEntity;
+import com.csixtyone.minecraft_infection.block.entity.custom.PurifierBlockEntity;
 import com.csixtyone.minecraft_infection.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,27 +15,28 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class PurifierInputMenu extends AbstractContainerMenu {
-    private final PurifierInputBlockEntity blockEntity;
+public class PurifierMenu extends AbstractContainerMenu {
+    private final PurifierBlockEntity blockEntity;
     private final Level level;
 
-    public PurifierInputMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public PurifierMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()));
     }
 
-    public PurifierInputMenu(int pContainerId, Inventory inv, BlockEntity entity) {
-        super(ModMenuTypes.PURIFIER_INPUT_MENU.get(), pContainerId);
-        checkContainerSize(inv, 3);
-        blockEntity = ((PurifierInputBlockEntity) entity);
+    public PurifierMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+        super(ModMenuTypes.PURIFIER_MENU.get(), pContainerId);
+        checkContainerSize(inv, 4);
+        blockEntity = ((PurifierBlockEntity) entity);
         this.level = inv.player.level;
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 34, 40));
-            this.addSlot(new SlotItemHandler(handler, 1, 57, 18));
-            this.addSlot(new ModResultSlot(handler, 2, 80, 60));
+            this.addSlot(new SlotItemHandler(handler, 0, 25, 26));
+            this.addSlot(new SlotItemHandler(handler, 1, 25, 52));
+            this.addSlot(new SlotItemHandler(handler, 2, 73, 38));
+            this.addSlot(new ModResultSlot(handler, 3, 128, 38));
         });
     }
 
@@ -51,7 +52,7 @@ public class PurifierInputMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {

@@ -3,16 +3,14 @@ package com.csixtyone.minecraft_infection.block;
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.custom.InfectedBlock;
 import com.csixtyone.minecraft_infection.block.custom.PurifiedBlock;
-import com.csixtyone.minecraft_infection.block.custom.PurifierInputBlock;
+import com.csixtyone.minecraft_infection.block.custom.PurifierStationBlock;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RedStoneOreBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import net.minecraft.world.level.material.Material;
@@ -21,8 +19,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -163,7 +159,7 @@ public class ModBlocks {
 
     //Purifier Block
     public static final RegistryObject<Block> PURIFIER = registerBlock("purifier",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_REDSTONE);
+            () -> new PurifierStationBlock(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_REDSTONE);
 
     //Purifier Input Block
     public static final RegistryObject<Block> PURIFIER_INPUT = registerBlock("purifier_input",

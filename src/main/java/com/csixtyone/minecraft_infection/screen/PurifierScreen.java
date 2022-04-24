@@ -9,11 +9,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class PurifierInputScreen extends AbstractContainerScreen<PurifierInputMenu> {
+public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(MinecraftInfection.MOD_ID, "textures/gui/purifier_input_gui.png");
+            new ResourceLocation(MinecraftInfection.MOD_ID, "textures/gui/purifier_gui.png");
 
-    public PurifierInputScreen(PurifierInputMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public PurifierScreen(PurifierMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
@@ -26,6 +26,22 @@ public class PurifierInputScreen extends AbstractContainerScreen<PurifierInputMe
         int y = (height - imageHeight) / 2;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+
+        RenderSystem.setShaderTexture(0, new ResourceLocation("minecraft_infection:textures/gui/extras/dustframe.png"));
+        this.blit(pPoseStack, this.leftPos + 25, this.topPos + 25, 0, 0, 16, 16, 16, 16);
+
+        /*RenderSystem.setShaderTexture(0, new ResourceLocation("textures/gui/extras/dustframe.png"));
+        this.blit(pPoseStack, this.leftPos + 72, this.topPos + 38, 0, 0, 16, 16, 16, 16);
+
+        RenderSystem.setShaderTexture(0, new ResourceLocation("textures/gui/extras/off.png"));
+        this.blit(pPoseStack, this.leftPos + 72, this.topPos + 55, 0, 0, 16, 16, 16, 16);
+
+        RenderSystem.setShaderTexture(0, new ResourceLocation("textures/gui/extras/fluidempty.png"));
+        this.blit(pPoseStack, this.leftPos + 149, this.topPos + 32, 0, 0, 16, 32, 16, 32);
+
+        RenderSystem.setShaderTexture(0, new ResourceLocation("textures/gui/extras/fluidempty.png"));
+        this.blit(pPoseStack, this.leftPos + 4, this.topPos + 31, 0, 0, 16, 32, 16, 32);*/
+
     }
 
     @Override

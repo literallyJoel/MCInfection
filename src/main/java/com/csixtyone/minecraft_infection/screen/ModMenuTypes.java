@@ -14,8 +14,8 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.CONTAINERS, MinecraftInfection.MOD_ID);
 
-    public static final RegistryObject<MenuType<PurifierInputMenu>> PURIFIER_INPUT_MENU =
-            registerMenuType(PurifierInputMenu::new, "purifier_input_menu");
+    public static final RegistryObject<MenuType<PurifierMenu>> PURIFIER_MENU =
+            registerMenuType(PurifierMenu::new, "purifier_menu");
 
 
 

@@ -12,10 +12,11 @@ import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import com.csixtyone.minecraft_infection.potion.ModPotions;
 import com.csixtyone.minecraft_infection.screen.ModMenuTypes;
-import com.csixtyone.minecraft_infection.screen.PurifierInputScreen;
+import com.csixtyone.minecraft_infection.screen.PurifierScreen;
 import com.csixtyone.minecraft_infection.util.BetterBrewingRecipe;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
@@ -68,7 +69,8 @@ public class MinecraftInfection {
     }
 
     private void clientSetup(final FMLClientSetupEvent event){
-        MenuScreens.register(ModMenuTypes.PURIFIER_INPUT_MENU.get(), PurifierInputScreen::new);
+        MenuScreens.register(ModMenuTypes.PURIFIER_MENU.get(), PurifierScreen::new);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.PURIFIER.get(), RenderType.translucent());
     }
 
     private void setup(final FMLCommonSetupEvent event) {
