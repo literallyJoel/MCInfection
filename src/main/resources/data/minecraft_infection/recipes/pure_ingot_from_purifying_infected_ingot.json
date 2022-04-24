@@ -1,0 +1,11 @@
+{
+  "type": "minecraft_infection:purify",
+  "ingredients": [
+    {
+      "item": "minecraft_infection:infected_ingot"
+    }
+  ],
+  "output": {
+    "item": "minecraft_infection:pure_ingot"
+  }
+}
