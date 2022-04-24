@@ -110,8 +110,6 @@ public class PurifierStationBlock extends BaseEntityBlock {
         if (blockStates[0].getBlock() == ModBlocks.PURIFIER_OUTPUT.get() || blockStates[1].getBlock() == ModBlocks.PURIFIER_OUTPUT.get()){
             HasOutputPlaced = true;
         }
-        System.out.println("input:" + HasInputPlaced);
-        System.out.println("output:" + HasOutputPlaced);
         return HasInputPlaced && HasOutputPlaced;
     }
 

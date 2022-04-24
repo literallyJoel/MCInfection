@@ -3,6 +3,7 @@ package com.csixtyone.minecraft_infection.screen;
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -26,9 +27,25 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
         int y = (height - imageHeight) / 2;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        if(menu.InputWaterLevel() == 3){
+            blit(pPoseStack, x + 7, y + 29, 176, 20, 12, 27);
+        }
+        else if(menu.InputWaterLevel() == 2){
+            blit(pPoseStack, x + 7, y + 36, 176, 29, 12, 20);
+        }else if(menu.InputWaterLevel() == 1){
+            blit(pPoseStack, x + 7, y + 47, 176, 38, 12, 9);
+        }
+        if (menu.OutputWaterLevel() == 3){
+            blit(pPoseStack, x + 146, y+29,176, 50, 12,27 );
+        }else if (menu.OutputWaterLevel() == 2){
+            blit(pPoseStack, x + 146, y+36,176, 57, 12,20 );
+        }else if (menu.OutputWaterLevel() == 1){
+            blit(pPoseStack, x + 146, y+47,176, 70, 12,9 );
+        }
+
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 85, y + 33, 176, 0, menu.getScaledProgress(), 16);
+            blit(pPoseStack, x + 85, y + 33, 176, 0, menu.getScaledProgress(), 18);
             blit(pPoseStack, x + 64, y + 55, 176, 82,12, 12);
         }
     }

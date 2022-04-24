@@ -19,7 +19,7 @@ public class PurifierMenu extends AbstractContainerMenu {
     private final  ContainerData data;
 
     public PurifierMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
 
     public PurifierMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -45,6 +45,13 @@ public class PurifierMenu extends AbstractContainerMenu {
         return data.get(0) > 0;
     }
 
+    public int InputWaterLevel(){
+        return  data.get(2);
+    }
+
+    public int OutputWaterLevel(){
+        return data.get(3);
+    }
 
     public int getScaledProgress() {
         int progress = this.data.get(0);
