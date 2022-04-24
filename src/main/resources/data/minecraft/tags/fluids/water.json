@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft_infection:infected_water_flowing",
+    "minecraft_infection:infected_water_fluid"
+  ]
+}

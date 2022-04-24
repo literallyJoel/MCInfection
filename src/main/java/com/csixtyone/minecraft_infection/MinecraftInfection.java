@@ -4,12 +4,15 @@ package com.csixtyone.minecraft_infection;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.block.entity.ModBlockEntities;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
+import com.csixtyone.minecraft_infection.fluid.ModFluids;
 import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
 import com.csixtyone.minecraft_infection.infection_system.setup.InfectionLevelEvents;
 import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import com.csixtyone.minecraft_infection.potion.ModPotions;
 import com.csixtyone.minecraft_infection.recipe.ModRecipes;
 import com.csixtyone.minecraft_infection.screen.ModMenuTypes;
@@ -49,6 +52,7 @@ public class MinecraftInfection {
         //Registers the custom blocks and items as implemented in the ModBlocks and ModItems classes.
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModFluids.register(eventBus);
         ModEffects.register(eventBus);
         ModPotions.register(eventBus);
         ModBlockEntities.register(eventBus);
@@ -70,6 +74,12 @@ public class MinecraftInfection {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.addListener(ClientSetup:: init));
     }
 
+
+    private void clientSetup(final FMLClientSetupEvent e){
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLUID.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLOWING.get(), RenderType.translucent());
+    }
     private void clientSetup(final FMLClientSetupEvent event){
         MenuScreens.register(ModMenuTypes.PURIFIER_MENU.get(), PurifierScreen::new);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.PURIFIER.get(), RenderType.translucent());
