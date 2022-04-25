@@ -12,6 +12,7 @@ import com.csixtyone.minecraft_infection.infection_system.setup.InfectionLevelEv
 import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import com.csixtyone.minecraft_infection.screen.WaterTankScreen;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import com.csixtyone.minecraft_infection.potion.ModPotions;
@@ -76,11 +77,14 @@ public class MinecraftInfection {
 
 
     private void clientSetup(final FMLClientSetupEvent e){
+        //Tells renderer which blocks to render translucently
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_BLOCK.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLUID.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLOWING.get(), RenderType.translucent());
-        MenuScreens.register(ModMenuTypes.PURIFIER_MENU.get(), PurifierScreen::new);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.PURIFIER.get(), RenderType.translucent());
+        //Registers the Menu Screens
+        MenuScreens.register(ModMenuTypes.PURIFIER_MENU.get(), PurifierScreen::new);
+        MenuScreens.register(ModMenuTypes.WATER_TANK_MENU.get(), WaterTankScreen::new);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
