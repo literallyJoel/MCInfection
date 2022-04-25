@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft_infection:puredust_block"
+    }
+  ],
+  "result": {
+    "item": "minecraft_infection:puredust",
+    "count": 9
+  }
+}

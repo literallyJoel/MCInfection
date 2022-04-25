@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft_infection:purifier",
+    "minecraft_infection:purifier_input",
+    "minecraft_infection:purifier_output",
+    "minecraft_infection:broken_purifier",
+    "minecraft_infection:broken_purifier_input",
+    "minecraft_infection:broken_purifier_output"
+  ]
+}

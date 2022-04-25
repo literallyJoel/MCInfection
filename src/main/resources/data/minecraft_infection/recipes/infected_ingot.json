@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft_infection:infected_block"
+    }
+  ],
+  "result": {
+    "item": "minecraft_infection:infected_ingot",
+    "count": 9
+  }
+}

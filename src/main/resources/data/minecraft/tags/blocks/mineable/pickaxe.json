@@ -17,6 +17,12 @@
     "minecraft_infection:infected_deepslate_lapis_ore",
     "minecraft_infection:puredust_ore",
     "minecraft_infection:puredust_block",
-    "minecraft_infection:infected_block"
+    "minecraft_infection:infected_block",
+    "minecraft_infection:purifier",
+    "minecraft_infection:purifier_input",
+    "minecraft_infection:purifier_output",
+    "minecraft_infection:broken_purifier",
+    "minecraft_infection:broken_purifier_input",
+    "minecraft_infection:broken_purifier_output"
   ]
 }
