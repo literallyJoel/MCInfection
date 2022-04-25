@@ -26,6 +26,8 @@ public class PurifiedBlock extends Block {
                 if (0.05f > random.nextFloat()) {
                     InfectionLevelHandler.decrease(1);
                 }
+
+
             }
         }
     }

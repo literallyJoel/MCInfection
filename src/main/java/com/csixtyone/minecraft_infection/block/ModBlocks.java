@@ -3,6 +3,7 @@ package com.csixtyone.minecraft_infection.block;
 import com.csixtyone.minecraft_infection.MinecraftInfection;
 import com.csixtyone.minecraft_infection.block.custom.InfectedBlock;
 import com.csixtyone.minecraft_infection.block.custom.PurifiedBlock;
+import com.csixtyone.minecraft_infection.block.custom.WaterTank;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.RedStoneOreBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
@@ -171,6 +173,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> PURIFIER_OUTPUT = registerBlock("purifier_output",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_REDSTONE);
 
+    //Water Tank
+    public static final RegistryObject<Block> WATER_TANK = registerBlock("water_tank",
+            () -> new WaterTank(BlockBehaviour.Properties.of(Material.GLASS).requiresCorrectToolForDrops().lightLevel((state) -> 2)),
+            ModCreativeModeTab.INFECTION_TAB);
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }

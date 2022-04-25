@@ -2,6 +2,7 @@ package com.csixtyone.minecraft_infection;
 
 
 import com.csixtyone.minecraft_infection.block.ModBlocks;
+import com.csixtyone.minecraft_infection.block.entity.ModBlockEntities;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
 import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.fluid.ModFluids;
@@ -11,7 +12,11 @@ import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import com.csixtyone.minecraft_infection.potion.ModPotions;
+import com.csixtyone.minecraft_infection.screen.ModMenuTypes;
+import com.csixtyone.minecraft_infection.screen.WaterTankMenu;
+import com.csixtyone.minecraft_infection.screen.WaterTankScreen;
 import com.csixtyone.minecraft_infection.util.BetterBrewingRecipe;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.Entity;
@@ -45,10 +50,11 @@ public class MinecraftInfection {
         //Registers the custom blocks and items as implemented in the ModBlocks and ModItems classes.
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModFluids.register(eventBus);
         ModEffects.register(eventBus);
         ModPotions.register(eventBus);
-
-        ModFluids.register(eventBus);
+        ModMenuTypes.register(eventBus);
+        ModBlockEntities.register(eventBus);
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -69,6 +75,7 @@ public class MinecraftInfection {
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_BLOCK.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLUID.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLOWING.get(), RenderType.translucent());
+        MenuScreens.register(ModMenuTypes.WATER_TANK_MENU.get(), WaterTankScreen::new);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
