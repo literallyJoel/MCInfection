@@ -20,7 +20,7 @@ public class InfectionEffect extends MobEffect {
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         if (pLivingEntity instanceof ServerPlayer Player) {
             Player.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(cap -> {
-                cap.increase(1);
+                cap.increase(150);
             });
         }
         super.applyEffectTick(pLivingEntity, pAmplifier);

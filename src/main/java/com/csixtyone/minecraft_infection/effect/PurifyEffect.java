@@ -17,7 +17,7 @@ public class PurifyEffect extends MobEffect {
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         if (pLivingEntity instanceof ServerPlayer Player) {
             Player.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(cap -> {
-                cap.decrease(1);
+                cap.decrease(150);
             });
         super.applyEffectTick(pLivingEntity, pAmplifier);
     }}

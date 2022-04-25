@@ -14,10 +14,10 @@ public class ModPotions {
             = DeferredRegister.create(ForgeRegistries.POTIONS, MinecraftInfection.MOD_ID);
 
     public static final RegistryObject<Potion> INFECTION_POTION = POTIONS.register("infection_potion",
-            () -> new Potion(new MobEffectInstance(ModEffects.INFECTION.get(), 100, 0)));
+            () -> new Potion(new MobEffectInstance(ModEffects.INFECTION.get(), 200, 0)));
 
     public static final RegistryObject<Potion> PURIFY_POTION = POTIONS.register("purify_potion",
-            () -> new Potion(new MobEffectInstance(ModEffects.PURIFY.get(), 100, 0)));
+            () -> new Potion(new MobEffectInstance(ModEffects.PURIFY.get(), 200, 0)));
 
     public static void register(IEventBus eventBus) {
         POTIONS.register(eventBus);

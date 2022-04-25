@@ -21,11 +21,7 @@ public class PurifiedBlock extends Block {
         //First we check if it's a player standing on the block
         if (pEntity instanceof Player) {
             if(!((Player) pEntity).isCreative()) {
-                Random random = new Random();
-
-                if (0.05f > random.nextFloat()) {
-                    InfectionLevelHandler.decrease(1);
-                }
+                InfectionLevelHandler.decrease(10);
             }
         }
     }
