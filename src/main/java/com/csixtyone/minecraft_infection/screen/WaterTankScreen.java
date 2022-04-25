@@ -29,7 +29,7 @@ public class WaterTankScreen extends AbstractContainerScreen<WaterTankMenu> {
 
         final int count = this.menu.data.get(0);
 
-        int scaledHeight = (int)(62*(count/5f));
+        int scaledHeight = (int)(62*(count/this.menu.blockEntity.getMaxCapacity()));
         bindTexture();
 
         int pUOffset = 176;
