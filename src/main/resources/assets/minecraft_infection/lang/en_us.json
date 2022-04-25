@@ -69,5 +69,7 @@
   "block.minecraft_infection.broken_purifier_output": "Broken Purifier Output",
   "block.minecraft_infection.purifier": "Purifier",
   "block.minecraft_infection.purifier_input": "Purifier Input",
-  "block.minecraft_infection.purifier_output": "Purifier Output"
+  "block.minecraft_infection.purifier_output": "Purifier Output",
+  "block.minecraft_infection.water_tank": "Water Tank",
+  "container.minecraft_infection.water_tank": "Water Tank"
 }
