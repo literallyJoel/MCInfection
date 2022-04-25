@@ -112,6 +112,9 @@ public class WaterTankEntity extends BlockEntity implements MenuProvider {
         this.currentLevel = Math.min(maxCapacity, level);
     }
 
+    public int getMaxCapacity(){
+        return this.maxCapacity;
+    }
     public void increaseCurrentLevel(int increaseBy){
         this.currentLevel = Math.min(maxCapacity, currentLevel+increaseBy);
     }
