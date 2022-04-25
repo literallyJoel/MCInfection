@@ -27,7 +27,7 @@ public class PacketIncreaseInfectionLevel {
         NetworkEvent.Context context = supplier.get();
 
         ServerPlayer player = context.getSender();
-        context.enqueueWork(()-> player.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(pil -> pil.increase(increaseAmount)));
+        player.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(pil -> pil.increase(increaseAmount));
 
         return true;
     }

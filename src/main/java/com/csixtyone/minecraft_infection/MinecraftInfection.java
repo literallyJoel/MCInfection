@@ -4,6 +4,7 @@ package com.csixtyone.minecraft_infection;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.block.entity.ModBlockEntities;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
+import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.fluid.ModFluids;
 import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
@@ -60,7 +61,6 @@ public class MinecraftInfection {
         ModRecipes.register(eventBus);
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
-
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.register(this);
         Messages.register();

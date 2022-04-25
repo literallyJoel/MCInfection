@@ -51,12 +51,11 @@
   "block.minecraft_infection.infected_deepslate_redstone_ore": "Infected Deepslate Redstone Ore",
   "block.minecraft_infection.infected_deepslate_lapis_ore": "Infected Deepslate Lapis Ore",
   "death.attack.minecraft_infection.infection": "%1$s died from infection.",
-  "block.minecraft_infection.infected_water_bucket": "Infected Water Bucket",
+  "item.minecraft_infection.infected_water_bucket": "Infected Water Bucket",
   "fluid.minecraft_infection.infected_water": "Infected Water",
   "death.attack.minecraft_infection:infection": "%1$s died from infection.",
   "effect.minecraft_infection.infection": "Infected",
   "effect.minecraft_infection.purify": "Purifying",
-
   "item.minecraft.tipped_arrow.effect.purify_potion": "Arrow of Purity",
   "item.minecraft.tipped_arrow.effect.infection_potion": "Arrow of Infection",
   "item.minecraft.potion.effect.infection_potion": "Infection Potion",
