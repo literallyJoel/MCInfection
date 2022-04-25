@@ -101,13 +101,10 @@ public class PurifierStationBlock extends BaseEntityBlock {
     private boolean canOpenInterface(Level pLevel,BlockPos pPos){
         boolean HasOutputPlaced = false;
         boolean HasInputPlaced = false;
-        BlockState[] blockStates = new BlockState[2];
-        blockStates[0] = (pLevel.getBlockState(pPos.east()));
-        blockStates[1] = (pLevel.getBlockState(pPos.west()));
-        if (blockStates[0].getBlock() == ModBlocks.PURIFIER_INPUT.get() ||blockStates[1].getBlock() == ModBlocks.PURIFIER_INPUT.get()){
+        if (pLevel.getBlockState(pPos.east()).getBlock() == ModBlocks.PURIFIER_INPUT.get()){
             HasInputPlaced = true;
         }
-        if (blockStates[0].getBlock() == ModBlocks.PURIFIER_OUTPUT.get() || blockStates[1].getBlock() == ModBlocks.PURIFIER_OUTPUT.get()){
+        if (pLevel.getBlockState(pPos.west()).getBlock() == ModBlocks.PURIFIER_OUTPUT.get()){
             HasOutputPlaced = true;
         }
         return HasInputPlaced && HasOutputPlaced;

@@ -27,7 +27,7 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
         int y = (height - imageHeight) / 2;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
-        if(menu.InputWaterLevel() == 3){
+        if(menu.InputWaterLevel() > 3){
             blit(pPoseStack, x + 7, y + 29, 176, 20, 12, 27);
         }
         else if(menu.InputWaterLevel() == 2){
@@ -35,7 +35,7 @@ public class PurifierScreen extends AbstractContainerScreen<PurifierMenu> {
         }else if(menu.InputWaterLevel() == 1){
             blit(pPoseStack, x + 7, y + 47, 176, 38, 12, 9);
         }
-        if (menu.OutputWaterLevel() == 3){
+        if (menu.OutputWaterLevel() > 3){
             blit(pPoseStack, x + 146, y+29,176, 50, 12,27 );
         }else if (menu.OutputWaterLevel() == 2){
             blit(pPoseStack, x + 146, y+36,176, 57, 12,20 );

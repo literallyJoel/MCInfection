@@ -1,17 +1,16 @@
 package com.csixtyone.minecraft_infection.block.entity.custom;
 
-import com.csixtyone.minecraft_infection.block.custom.PurifiedBlock;
+import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.block.entity.ModBlockEntities;
+import com.csixtyone.minecraft_infection.fluid.ModFluids;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import com.csixtyone.minecraft_infection.recipe.PurifierRecipe;
 import com.csixtyone.minecraft_infection.screen.PurifierMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.util.datafix.fixes.CauldronRenameFix;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -21,14 +20,13 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CauldronBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 //import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -39,7 +37,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
-import java.util.Random;
 
 public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -55,8 +52,8 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 144;
-    private int inputCauldron = 0;
-    private int outputCauldron = 0;
+    private int inputFluid = 0;
+    private int outputFluid = 0;
 
     public PurifierBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.PURIFIER_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
@@ -65,8 +62,8 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
                 switch (index) {
                     case 0: return PurifierBlockEntity.this.progress;
                     case 1: return PurifierBlockEntity.this.maxProgress;
-                    case 2: return PurifierBlockEntity.this.inputCauldron;
-                    case 3: return PurifierBlockEntity.this.outputCauldron;
+                    case 2: return PurifierBlockEntity.this.inputFluid;
+                    case 3: return PurifierBlockEntity.this.outputFluid;
                     default: return 0;
                 }
             }
@@ -75,8 +72,8 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
                 switch(index) {
                     case 0: PurifierBlockEntity.this.progress = value; break;
                     case 1: PurifierBlockEntity.this.maxProgress = value; break;
-                    case 2: PurifierBlockEntity.this.inputCauldron = value; break;
-                    case 3: PurifierBlockEntity.this.outputCauldron = value;break;
+                    case 2: PurifierBlockEntity.this.inputFluid = value; break;
+                    case 3: PurifierBlockEntity.this.outputFluid = value;break;
                 }
             }
 
@@ -124,8 +121,8 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("purifier.progress", progress);
-        tag.putInt("input_water", inputCauldron);
-        tag.putInt("output_water", outputCauldron);
+        tag.putInt("input_water", inputFluid);
+        tag.putInt("output_water", outputFluid);
         super.saveAdditional(tag);
     }
 
@@ -134,8 +131,8 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         progress = nbt.getInt("purifier.progress");
-        inputCauldron = nbt.getInt("input_water");
-        outputCauldron = nbt.getInt("output_water");
+        inputFluid = nbt.getInt("input_water");
+        outputFluid = nbt.getInt("output_water");
     }
 
     public void drops() {
@@ -155,6 +152,7 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.progress > pBlockEntity.maxProgress) {
                 craftItem(pBlockEntity);
+                pBlockEntity.UpdateFluidValues(pPos,pBlockEntity,pLevel);
             }
         } else {
             pBlockEntity.resetProgress();
@@ -174,15 +172,16 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
 
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
-                && hasPuredustInSlot(entity) && hasRedstoneSlot(entity);
+                && hasPuredustInSlot(entity) && hasRedstoneSlot(entity) && entity.hasWaterInput()
+         && entity.canIncreaseOutputWaterLevel();
     }
 
     private boolean hasWaterInput(){
-        return PurifierBlockEntity.this.inputCauldron > 0;
+        return PurifierBlockEntity.this.inputFluid > 0;
     }
 
     private boolean canIncreaseOutputWaterLevel(){
-        return PurifierBlockEntity.this.outputCauldron < 3;
+        return PurifierBlockEntity.this.outputFluid < 5;
     }
 
     private static boolean hasPuredustInSlot(PurifierBlockEntity entity) {
@@ -208,7 +207,7 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
             entity.itemHandler.extractItem(1,1, false);
             entity.itemHandler.extractItem(2,1,false);
             entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(3).getCount() + 1));
+                    entity.itemHandler.getStackInSlot(3).getCount() + 2));
 
             entity.resetProgress();
         }
@@ -218,27 +217,48 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
         this.progress = 0;
     }
 
+    private void UpdateFluidValues(BlockPos pPos, PurifierBlockEntity pBlockEntity, Level pLevel){
+        WaterTankEntity inputTank = (WaterTankEntity)  pLevel.getBlockEntity(pPos.offset(1,1,0));
+        WaterTankEntity outputTank = (WaterTankEntity) pLevel.getBlockEntity(pPos.offset(-1,1,0));
+        inputTank.decreaseCurrentLevel(1);
+        outputTank.increaseCurrentLevel(1);
+    }
+
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
         return inventory.getItem(3).getItem() == output.getItem() || inventory.getItem(3).isEmpty();
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        return inventory.getItem(3).getMaxStackSize() > inventory.getItem(3).getCount();
+        return inventory.getItem(3).getMaxStackSize() - 1 > inventory.getItem(3).getCount();
     }
 
     private static void CheckWaterLevel(BlockPos pPos, PurifierBlockEntity pBlockEntity, Level pLevel){
-        if (pLevel.getBlockState(pPos.offset(1,1,0)).getBlock() == Blocks.WATER_CAULDRON){
-            pBlockEntity.inputCauldron = 3;
-
+        if (pLevel.getBlockState(pPos.offset(1,1,0)).getBlock() == ModBlocks.WATER_TANK.get()){
+            WaterTankEntity inputTank = (WaterTankEntity)  pLevel.getBlockEntity(pPos.offset(1,1,0));
+           if (inputTank.getCurrentFluid() != null) {
+               if (inputTank.getCurrentFluid().isSame(Fluids.WATER)) {
+                   pBlockEntity.inputFluid = inputTank.getCurrentLevel();
+               } else {
+                   pBlockEntity.inputFluid = 0;
+               }
+           }
         }
         else {
-            pBlockEntity.inputCauldron = 0;
+            pBlockEntity.inputFluid = 0;
         }
-       if (pLevel.getBlockState(pPos.offset(-1,1,0)).getBlock() == Blocks.WATER_CAULDRON){
-           pBlockEntity.outputCauldron = 3;
+       if (pLevel.getBlockState(pPos.offset(-1,1,0)).getBlock() == ModBlocks.WATER_TANK.get()) {
+           WaterTankEntity outputTank = (WaterTankEntity) pLevel.getBlockEntity(pPos.offset(-1, 1, 0));
+           if (outputTank.getCurrentFluid() != null) {
+               if (outputTank.getCurrentFluid().isSame(ModFluids.INFECTED_WATER_FLUID.get())) {
+                   pBlockEntity.outputFluid = outputTank.getCurrentLevel();
+               } else {
+                   pBlockEntity.outputFluid = 0;
+               }
+
+           }
        }
        else {
-           pBlockEntity.outputCauldron = 0;
+           pBlockEntity.outputFluid = 0;
        }
     }
 }
