@@ -78,13 +78,7 @@ public class WaterTankEntity extends BlockEntity implements MenuProvider {
 
     }
 
-    public void setCurrentLevel(int level){
-        this.currentLevel = Math.min(maxCapacity, level);
-    }
 
-    public void increaseCurrentLevel(int increaseBy){
-        this.currentLevel = Math.min(maxCapacity, currentLevel+increaseBy);
-    }
     @Override
     public Component getDisplayName() {
         return new TextComponent("Water Tank");
@@ -112,6 +106,14 @@ public class WaterTankEntity extends BlockEntity implements MenuProvider {
 
     public Fluid getCurrentFluid(){
         return this.currentFluid;
+    }
+
+    public void setCurrentLevel(int level){
+        this.currentLevel = Math.min(maxCapacity, level);
+    }
+
+    public void increaseCurrentLevel(int increaseBy){
+        this.currentLevel = Math.min(maxCapacity, currentLevel+increaseBy);
     }
     @Override
     public void onLoad() {
@@ -176,10 +178,10 @@ public class WaterTankEntity extends BlockEntity implements MenuProvider {
                         pBlockEntity.currentFluid = Fluids.WATER;
                         pBlockEntity.data.set(1, 1);
                     }
-
-                }
-                    pBlockEntity.currentLevel++;
+                    pBlockEntity.increaseCurrentLevel(1);
                     pBlockEntity.itemHandler.setStackInSlot(0, new ItemStack(Items.BUCKET));
+                }
+
                 }
             }
         }
