@@ -254,7 +254,6 @@ public class PurifierBlockEntity extends BlockEntity implements MenuProvider {
                } else {
                    pBlockEntity.outputFluid = 0;
                }
-
            }
        }
        else {
