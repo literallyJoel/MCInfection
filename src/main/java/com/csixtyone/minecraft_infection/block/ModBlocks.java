@@ -62,6 +62,41 @@ public class ModBlocks {
 
     //Custom block definitions
 
+    //Infected Logs
+    public static final RegistryObject<Block> INFECTED_LOGS = registerBlock("infected_logs",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Plant One Block
+    public static final RegistryObject<Block> INFECTED_PLANT_ONE = registerBlock("infected_plant_one",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Plant Two Block
+    public static final RegistryObject<Block> INFECTED_PLANT_TWO = registerBlock("infected_plant_two",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Sand Block
+    public static final RegistryObject<Block> INFECTED_SAND = registerBlock("infected_sand",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.SAND).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Leaf Block
+    public static final RegistryObject<Block> INFECTED_LEAVES = registerBlock("infected_leaves",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Dirt Block
+    public static final RegistryObject<Block> INFECTED_DIRT = registerBlock("infected_dirt",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Grass Block
+    public static final RegistryObject<Block> INFECTED_GRASS = registerBlock("infected_grass",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
     //Infected Gold Ore
     public static final RegistryObject<Block> INFECTED_GOLD_ORE = registerBlock("infected_gold_ore",
             () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops().lightLevel((state) -> 3)),
