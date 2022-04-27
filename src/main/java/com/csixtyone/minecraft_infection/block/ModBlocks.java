@@ -62,7 +62,7 @@ public class ModBlocks {
 
     //Custom block definitions
 
-    //Infected Plant One Block
+    //Infected Logs
     public static final RegistryObject<Block> INFECTED_LOGS = registerBlock("infected_logs",
             () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).lightLevel((state) -> 3)),
             ModCreativeModeTab.INFECTION_TAB);

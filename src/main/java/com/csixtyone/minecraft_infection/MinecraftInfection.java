@@ -82,6 +82,9 @@ public class MinecraftInfection {
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLUID.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLOWING.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.PURIFIER.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.INFECTED_LEAVES.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.INFECTED_PLANT_ONE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.INFECTED_PLANT_TWO.get(), RenderType.translucent());
         //Registers the Menu Screens
         MenuScreens.register(ModMenuTypes.PURIFIER_MENU.get(), PurifierScreen::new);
         MenuScreens.register(ModMenuTypes.WATER_TANK_MENU.get(), WaterTankScreen::new);
