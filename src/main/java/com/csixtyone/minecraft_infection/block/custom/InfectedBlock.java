@@ -5,6 +5,7 @@ import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionLevelHandler;
 import com.csixtyone.minecraft_infection.infection_system.network.PacketIncreaseInfectionLevel;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
+import com.csixtyone.minecraft_infection.particle.ModParticles;
 import com.csixtyone.minecraft_infection.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -105,7 +106,7 @@ public class InfectedBlock extends Block {
         float particleChance = 0.45f;
         //todo: implement custom particles (can't find clear resources on how to do so)
         if (particleChance < rand.nextFloat()) {
-            level.addParticle(ParticleTypes.PORTAL, pos.getX() + rand.nextDouble(), pos.getY() + 0.50, pos.getZ() + rand.nextDouble(), 0d, 0.05d, 0d);
+            level.addParticle(ModParticles.INFECTED_PARTICLES.get(), pos.getX() + rand.nextDouble(), pos.getY() + 0.50, pos.getZ() + rand.nextDouble(), 0d, 0.05d, 0d);
         }
         super.animateTick(stateIn, level, pos, rand);
     }
@@ -130,7 +131,7 @@ public class InfectedBlock extends Block {
         //First we check if it's a player standing on the block
         if (pEntity instanceof Player) {
             if(!((Player) pEntity).isCreative()) {
-                    InfectionLevelHandler.increase(1);
+                    InfectionLevelHandler.increase(100);
             }
         }
     }
