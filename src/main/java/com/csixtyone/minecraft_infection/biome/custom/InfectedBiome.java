@@ -1,8 +1,11 @@
 package com.csixtyone.minecraft_infection.biome.custom;
 
+import com.csixtyone.minecraft_infection.world.feature.ModConfiguredFeatures;
 import com.csixtyone.minecraft_infection.world.feature.ModOrePlacement;
 import com.csixtyone.minecraft_infection.world.feature.ModPlacedFeatures;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.sounds.Music;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.*;
@@ -52,12 +55,14 @@ public class InfectedBiome{
         return biome(Biome.Precipitation.NONE, Biome.BiomeCategory.PLAINS, 1F, 0.5F, spawnBuilder, biomeBuilder, NORMAL_MUSIC);
     }
 
+
+
     private static void addInfectedSpawns(BiomeGenerationSettings.Builder biomeBuilder){
         biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.INFECTED_ORE_PLACED);
         biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.INFECTED_DIAMOND_ORE_PLACED);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.INFECTED_PLANT_ONE_PLACED);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.INFECTED_PLANT_TWO_PLACED);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.INFECTED_BIOME_GRASS);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.INFECTED_PLANT_TWO_PLACED);;
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModConfiguredFeatures.INFECTED_TREE_CHECKED);
 
     }
 }
