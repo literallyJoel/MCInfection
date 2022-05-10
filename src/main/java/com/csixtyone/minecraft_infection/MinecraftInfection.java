@@ -1,6 +1,7 @@
 package com.csixtyone.minecraft_infection;
 
 
+import com.csixtyone.minecraft_infection.biome.ModSurfaceRuleData;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.block.entity.ModBlockEntities;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
@@ -12,6 +13,7 @@ import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
 import com.csixtyone.minecraft_infection.particle.ModParticles;
+import com.csixtyone.minecraft_infection.region.InfectedRegion;
 import com.csixtyone.minecraft_infection.screen.WaterTankScreen;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -21,6 +23,7 @@ import com.csixtyone.minecraft_infection.screen.ModMenuTypes;
 import com.csixtyone.minecraft_infection.screen.PurifierScreen;
 import com.csixtyone.minecraft_infection.util.BetterBrewingRecipe;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
@@ -35,6 +38,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import terrablender.api.Regions;
+import terrablender.api.SurfaceRuleManager;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MinecraftInfection.MOD_ID)
@@ -93,10 +98,17 @@ public class MinecraftInfection {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
-                ModItems.PUREDUST.get(), ModPotions.PURIFY_POTION.get()));
-        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
-                ModItems.INFECTED_INGOT.get(), ModPotions.INFECTION_POTION.get()));
+        event.enqueueWork(() ->{
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
+                    ModItems.PUREDUST.get(), ModPotions.PURIFY_POTION.get()));
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
+                    ModItems.INFECTED_INGOT.get(), ModPotions.INFECTION_POTION.get()));
+
+            Regions.register(new InfectedRegion(new ResourceLocation(MOD_ID, "overworld"), 2));
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRuleData.makeRules());
+        });
+
+
     }
 
 
