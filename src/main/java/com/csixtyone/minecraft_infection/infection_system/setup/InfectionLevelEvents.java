@@ -74,7 +74,7 @@ public class InfectionLevelEvents {
 
     //Declaring this outside the method to save on recreating the list every time a player attacks another player.
     private static final List<Item> infectedAttackItems = Arrays.asList(INFECTED_AXE.get(), INFECTED_HOE.get(), INFECTED_PICKAXE.get(), INFECTED_SHOVEL.get(), INFECTED_SWORD.get());
-
+    private static final List<Item> pureAttackitems = Arrays.asList(PURE_AXE.get(), PURE_HOE.get(), PURE_PICKAXE.get(), PURE_SHOVEL.get(), PURE_SWORD.get());
     /*If a player attacks, it checks that both the attacking player is server side and that the entity it attacked
       is a player that is server side. If it is, and the attacking player has an item that can increase infection levels
       it increases infection level of other player by 5
@@ -88,14 +88,18 @@ public class InfectionLevelEvents {
                     cap.increase(10000);
                 });
             }
+
+            if(pureAttackitems.contains(attackingItem)){
+                attackedPlayer.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(cap ->{
+                    cap.decrease(10000);
+                });
+            }
         }
 
 
     }
 
-    public static void onWorldLoad(WorldEvent.Load e){
-        InfectionLevelHandler.isSafe = false;
-    }
+
 
 
 }

@@ -13,9 +13,10 @@ public class ModSurfaceRuleData {
     {
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, INFECTED_GRASS_BLOCK), INFECTED_DIRT);
+        SurfaceRules.RuleSource undergroundStone = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, INFECTED_STONE));
         return SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.INFECTED_BIOME), grassSurface),
-                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, INFECTED_STONE)
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.INFECTED_BIOME), undergroundStone),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.INFECTED_BIOME), grassSurface)
         );
     }
 
