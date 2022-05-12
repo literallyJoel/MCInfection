@@ -7,15 +7,16 @@ import com.csixtyone.minecraft_infection.block.custom.PurifierStationBlock;
 import com.csixtyone.minecraft_infection.block.custom.WaterTank;
 import com.csixtyone.minecraft_infection.item.ModCreativeModeTab;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.GlassBlock;
-import net.minecraft.world.level.block.RedStoneOreBlock;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -61,6 +62,55 @@ public class ModBlocks {
     }
 
     //Custom block definitions
+
+    //Infected Logs
+    public static final RegistryObject<Block> INFECTED_LOGS = registerBlock("infected_logs",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Plant One Block
+    public static final RegistryObject<Block> INFECTED_PLANT_ONE = registerBlock("infected_plant_one",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Plant Two Block
+    public static final RegistryObject<Block> INFECTED_PLANT_TWO = registerBlock("infected_plant_two",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Sand Block
+    public static final RegistryObject<Block> INFECTED_SAND = registerBlock("infected_sand",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.SAND).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Leaf Block
+    public static final RegistryObject<Block> INFECTED_LEAVES = registerBlock("infected_leaves",
+            () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)){
+                @Override
+                public boolean isFlammable(BlockState blockState, BlockGetter world, BlockPos pos, Direction direction){
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction direction){
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction direction){
+                    return 30;
+                }
+            },ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Dirt Block
+    public static final RegistryObject<Block> INFECTED_DIRT = registerBlock("infected_dirt",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
+
+    //Infected Grass Block
+    public static final RegistryObject<Block> INFECTED_GRASS = registerBlock("infected_grass",
+            () -> new InfectedBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).lightLevel((state) -> 3)),
+            ModCreativeModeTab.INFECTION_TAB);
 
     //Infected Gold Ore
     public static final RegistryObject<Block> INFECTED_GOLD_ORE = registerBlock("infected_gold_ore",

@@ -1,17 +1,19 @@
 package com.csixtyone.minecraft_infection;
 
 
+import com.csixtyone.minecraft_infection.biome.ModSurfaceRuleData;
 import com.csixtyone.minecraft_infection.block.ModBlocks;
 import com.csixtyone.minecraft_infection.block.entity.ModBlockEntities;
 import com.csixtyone.minecraft_infection.commands.RegisterCommands;
 import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.fluid.ModFluids;
-import com.csixtyone.minecraft_infection.effect.ModEffects;
 import com.csixtyone.minecraft_infection.infection_system.data.client.InfectionEffects;
 import com.csixtyone.minecraft_infection.infection_system.setup.InfectionLevelEvents;
 import com.csixtyone.minecraft_infection.infection_system.setup.ClientSetup;
 import com.csixtyone.minecraft_infection.infection_system.setup.Messages;
 import com.csixtyone.minecraft_infection.item.ModItems;
+import com.csixtyone.minecraft_infection.particle.ModParticles;
+import com.csixtyone.minecraft_infection.region.InfectedRegion;
 import com.csixtyone.minecraft_infection.screen.WaterTankScreen;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -21,8 +23,7 @@ import com.csixtyone.minecraft_infection.screen.ModMenuTypes;
 import com.csixtyone.minecraft_infection.screen.PurifierScreen;
 import com.csixtyone.minecraft_infection.util.BetterBrewingRecipe;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
@@ -37,6 +38,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import terrablender.api.Regions;
+import terrablender.api.SurfaceRuleManager;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MinecraftInfection.MOD_ID)
@@ -57,6 +60,7 @@ public class MinecraftInfection {
         ModFluids.register(eventBus);
         ModEffects.register(eventBus);
         ModPotions.register(eventBus);
+        ModParticles.register(eventBus);
         ModBlockEntities.register(eventBus);
         ModMenuTypes.register(eventBus);
         ModRecipes.register(eventBus);
@@ -82,6 +86,9 @@ public class MinecraftInfection {
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLUID.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INFECTED_WATER_FLOWING.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.PURIFIER.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.INFECTED_LEAVES.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.INFECTED_PLANT_ONE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.INFECTED_PLANT_TWO.get(), RenderType.translucent());
         //Registers the Menu Screens
         MenuScreens.register(ModMenuTypes.PURIFIER_MENU.get(), PurifierScreen::new);
         MenuScreens.register(ModMenuTypes.WATER_TANK_MENU.get(), WaterTankScreen::new);
@@ -91,10 +98,17 @@ public class MinecraftInfection {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
-                ModItems.PUREDUST.get(), ModPotions.PURIFY_POTION.get()));
-        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
-                ModItems.INFECTED_INGOT.get(), ModPotions.INFECTION_POTION.get()));
+        event.enqueueWork(() ->{
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
+                    ModItems.PUREDUST.get(), ModPotions.PURIFY_POTION.get()));
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
+                    ModItems.INFECTED_INGOT.get(), ModPotions.INFECTION_POTION.get()));
+
+            Regions.register(new InfectedRegion(new ResourceLocation(MOD_ID, "overworld"), 2));
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRuleData.makeRules());
+        });
+
+
     }
 
 

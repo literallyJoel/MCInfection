@@ -19,9 +19,9 @@ public class PurifiedBlock extends Block {
     @Override
     public void stepOn(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @NotNull Entity pEntity) {
         //First we check if it's a player standing on the block
-        if (pEntity instanceof Player) {
-            if(!((Player) pEntity).isCreative()) {
-                InfectionLevelHandler.decrease(10);
+        if (pEntity instanceof Player player) {
+            if(!player.isCreative()) {
+                InfectionLevelHandler.decrease(50);
             }
         }
     }
