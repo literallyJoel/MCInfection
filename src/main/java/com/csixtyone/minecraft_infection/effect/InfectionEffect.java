@@ -18,10 +18,8 @@ public class InfectionEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (pLivingEntity instanceof ServerPlayer Player) {
-            Player.getCapability(PlayerInfectionLevelProvider.PLAYER_INFECTION_LEVEL).ifPresent(cap -> {
-                cap.increase(150);
-            });
+        if (pLivingEntity instanceof ServerPlayer player) {
+            InfectionLevelHandler.increase(100, player);
         }
         super.applyEffectTick(pLivingEntity, pAmplifier);
     }

@@ -36,8 +36,8 @@ public class InfectedWater extends LiquidBlock{
 
     @Override
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-        if(pEntity instanceof ServerPlayer){
-            InfectionLevelHandler.increase(50);
+        if(pEntity instanceof ServerPlayer serverPlayer){
+            InfectionLevelHandler.increase(50, serverPlayer);
         }
         super.entityInside(pState, pLevel, pPos, pEntity);
 
