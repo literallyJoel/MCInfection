@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -129,9 +130,9 @@ public class InfectedBlock extends Block {
     @Override
     public void stepOn(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @NotNull Entity pEntity) {
         //First we check if it's a player standing on the block
-        if (pEntity instanceof Player player) {
+        if (pEntity instanceof ServerPlayer player) {
             if(!player.isCreative()) {
-                    InfectionLevelHandler.increase(50);
+                    InfectionLevelHandler.increase(50, player);
             }
         }
     }
